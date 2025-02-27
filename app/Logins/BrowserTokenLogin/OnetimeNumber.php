@@ -2,7 +2,7 @@
 /**
  * @author  Pluginly
  * @since   1.0.0
- * @version 1.0.0
+ * @version 1.7.3
  */
 
 namespace LoginMeNow\Logins\BrowserTokenLogin;
