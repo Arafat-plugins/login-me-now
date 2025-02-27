@@ -12,6 +12,7 @@ use LoginMeNow\Common\Singleton;
 use LoginMeNow\DTO\LoginDTO;
 use LoginMeNow\Repositories\AccountRepository;
 use LoginMeNow\Utils\Helper;
+use LoginMeNow\Utils\Transient;
 
 class AutoLogin {
 	use Singleton;
@@ -27,17 +28,17 @@ class AutoLogin {
 		}
 
 		if ( empty( $_GET['lmn'] ) ) {
-			$title   = __( 'Number Not Provided', 'login-me-now' );
+			$title   = __( 'Token not provided', 'login-me-now' );
 			$message = __( 'Request a new access link in order to obtain dashboard access', 'login-me-now' );
 			Helper::get_template_part( '/templates/admin/messages/error', ['title' => $title, 'message' => $message] );
 			exit();
 		}
 
-		/** First thing, check the secret number if not exist return an error*/
-		$number  = sanitize_text_field( $_GET['lmn'] );
-		$t_value = get_transient( $number );
+		/** First thing, check the secret key if not exist return an error*/
+		$key     = sanitize_text_field( $_GET['lmn'] );
+		$t_value = Transient::get( $key );
 		if ( ! $t_value ) {
-			$title   = __( 'Invalid number', 'login-me-now' );
+			$title   = __( 'Invalid token', 'login-me-now' );
 			$message = __( 'Request a new access link in order to obtain dashboard access', 'login-me-now' );
 			Helper::get_template_part( '/templates/admin/messages/error', ['title' => $title, 'message' => $message] );
 			exit();
@@ -51,7 +52,7 @@ class AutoLogin {
 			exit();
 		}
 
-		delete_transient( $number );
+		Transient::delete( $key );
 
 		$redirect_uri = apply_filters( 'login_me_now_browser_token_login_redirect_uri', admin_url() );
 
