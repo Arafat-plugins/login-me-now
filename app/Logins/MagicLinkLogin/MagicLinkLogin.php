@@ -32,7 +32,7 @@ class MagicLinkLogin extends ModuleBase {
 	}
 
 	public static function show(): bool {
-		$enable = SettingsRepository::get( 'email_magic_link_login', true );
+		$enable = SettingsRepository::get( 'email_magic_link_enable', true );
 
 		if ( $enable ) {
 			return true;

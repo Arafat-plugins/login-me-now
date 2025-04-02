@@ -17,8 +17,8 @@ class Settings {
 	public function register_fields( array $fields ) {
 		$fields[] = [
 			'title'         => 'Enable magic link login',
-			'id'            => 'email_magic_link_enable_x',
-			'previous_data' => SettingsRepository::get( 'email_magic_link_enable_x', false ),
+			'id'            => 'email_magic_link_enable',
+			'previous_data' => SettingsRepository::get( 'email_magic_link_enable', false ),
 			'type'          => 'switch',
 			'tab'           => 'email-magic-link',
 		];

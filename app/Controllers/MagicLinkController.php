@@ -34,7 +34,7 @@ class MagicLinkController {
 			wp_send_json_error( ['message' => __( "User not found", 'login-me-now' )] );
 		}
 
-		$status = ( new MagicLinkRepository( 'magic_link' ) )->email_magic_link( $user->ID, $email );
+		$status = ( new MagicLinkRepository() )->email_magic_link( $user->ID, $email );
 		if ( ! $status ) {
 			wp_send_json_error( ['message' => __( "Something went wrong", 'login-me-now' )] );
 		}
@@ -45,22 +45,15 @@ class MagicLinkController {
 	}
 
 	public function listen_magic_link(): void {
-		if ( ! isset( $_GET['lmn-magic-link'] ) ) {
+		if ( ! isset( $_GET['lmn-magic-link'] ) || empty( $_GET['lmn-magic-link'] ) ) {
 			return;
-		}
-
-		if ( empty( $_GET['lmn-magic-link'] ) ) {
-			$title   = __( 'Invalid Magic Link Found', 'login-me-now' );
-			$message = __( 'Request a new access link in order to obtain dashboard access', 'login-me-now' );
-			Helper::get_template_part( '/templates/admin/messages/error', ['title' => $title, 'message' => $message] );
-			exit();
 		}
 
 		$token   = sanitize_text_field( $_GET['lmn-magic-link'] );
 		$user_id = ( new MagicLinkRepository )->verify_token( $token );
 
 		if ( ! $user_id ) {
-			$title   = __( 'Invalid Magic Link', 'login-me-now' );
+			$title   = __( 'Invalid Magic Link mm', 'login-me-now' );
 			$message = __( 'Request a new access link in order to obtain dashboard access', 'login-me-now' );
 			Helper::get_template_part( '/templates/admin/messages/error', ['title' => $title, 'message' => $message] );
 			exit();
