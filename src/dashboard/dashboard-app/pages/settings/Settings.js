@@ -35,6 +35,7 @@ export default function Settings() {
 
   const tabs = [
     { key: 'general', label: __('General', 'content-restriction') },
+    { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction') },
     { key: 'advanced', label: __('Advanced', 'content-restriction') },
   ];
 

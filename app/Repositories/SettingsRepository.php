@@ -115,10 +115,12 @@ class SettingsRepository {
 			// ],
 		];
 
-		return $fields;
+		return apply_filters( 'login_me_now_settings_fields', $fields );
 	}
 
-	public function save( string $key, $value ): array {
+	public static function save( string $key, $value ) {
+
+		error_log( ' $key : ' . print_r( $value, true ) );
 
 		self::$settings       = get_option( self::$option_name, [] );
 		self::$settings[$key] = $value;
