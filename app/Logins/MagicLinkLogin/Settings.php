@@ -1,8 +1,8 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.7.0
- * @version 1.7.0
+ * @since   1.8
+ * @version 1.8
  */
 
 namespace LoginMeNow\Logins\MagicLinkLogin;
@@ -11,14 +11,21 @@ use LoginMeNow\Repositories\SettingsRepository;
 
 class Settings {
 	public function __construct() {
-		add_filter( 'login_me_now_admin_settings_datatypes', [$this, 'register_types'] );
 		add_filter( 'login_me_now_settings_fields', [$this, 'register_fields'] );
 	}
 
 	public function register_fields( array $fields ) {
 		$fields[] = [
+			'title'         => 'Enable magic link login',
+			'id'            => 'email_magic_link_enable_x',
+			'previous_data' => SettingsRepository::get( 'email_magic_link_enable_x', false ),
+			'type'          => 'switch',
+			'tab'           => 'email-magic-link',
+		];
+
+		$fields[] = [
 			'title'         => 'Title',
-			'description'   => 'Enter the form title',
+			'tooltip'       => 'Enter the form title',
 			'id'            => 'email_magic_link_title',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_title', 'Email Magic Link' ),
@@ -28,7 +35,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Description',
-			'description'   => 'Enter the form description',
+			'tooltip'       => 'Enter the form description',
 			'id'            => 'email_magic_link_description',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_description', 'Enter your registered email address to receive a quick login link directly in your inbox.' ),
@@ -38,7 +45,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Expiration',
-			'description'   => 'Enter the expiration of link in seconds',
+			'tooltip'       => 'Enter the expiration of link in seconds',
 			'id'            => 'email_magic_link_expiration',
 			'placeholder'   => 'e.g., 300',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_expiration', 300 ),
@@ -47,13 +54,5 @@ class Settings {
 		];
 
 		return $fields;
-	}
-
-	public function register_types( array $options ) {
-		$options['email_magic_link_title']       = 'string';
-		$options['email_magic_link_description'] = 'string';
-		$options['email_magic_link_expiration']  = 'int';
-
-		return $options;
 	}
 }

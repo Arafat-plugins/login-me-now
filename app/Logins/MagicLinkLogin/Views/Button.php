@@ -27,7 +27,7 @@ use LoginMeNow\Repositories\SettingsRepository;
 	<div class="lmn_magic_link_login_form">
 		<div class="lmn_magic_link_login_form_header">
 			<h2><?php echo esc_html( SettingsRepository::get( 'email_magic_link_title', 'Email Magic Link' ) ); ?></h2>
-			<p>Enter your registered email address to receive a quick login link directly in your inbox.</p>
+			<p><?php echo esc_html( SettingsRepository::get( 'email_magic_link_description', 'Enter your registered email address to receive a quick login link directly in your inbox.' ) ); ?></p>
 		</div>
 		<input type="email" name="lmn_email_address" id="lmn_email_address" autocomplete="email" placeholder="Email Address">
     	<a href="#" class="lmn_btn lmn_magic_link_login_send_link"><?php esc_html_e( 'Send Link', 'login-me-now' ); ?></a>
