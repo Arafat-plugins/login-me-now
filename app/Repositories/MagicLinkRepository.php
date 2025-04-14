@@ -77,7 +77,13 @@ class MagicLinkRepository {
 		// Headers with HTML content type
 		$headers = ['Content-Type: text/html; charset=UTF-8'];
 
-		return wp_mail( $email, $subject, $message, $headers );
+		$mail_sent =  wp_mail( $email, $subject, $message, $headers );
+
+		if (! $mail_sent) {
+			wp_send_json_error(array('message' => __('There is a critical error. Please contact site administrator.', 'login-me-now')));
+		}
+
+		return $mail_sent;
 	}
 
 	/**
