@@ -1,3 +1,85 @@
+.login form {
+    position: relative;
+}
+
+.lmn_magic_link_login {
+    position: relative;
+}
+
+/* Magic Link Login Background */
+.lmn_magic_link_login_bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+}
+
+/* Magic Link Form */
+.lmn_magic_link_login_form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.lmn_magic_link_login_form_header {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.lmn_magic_link_login_form_header h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Active classes to show form and background */
+.lmn_magic_link_login_form.active,
+.lmn_magic_link_login_bg.active {
+    display: block;
+}
+
+.lmn_btn:hover {
+    background: #005d8f;
+}
+
+/* Close Button */
+.lmn_magic_link_login_close {
+    display: inline-block;
+    margin-top: 15px;
+    color: #0073aa;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lmn_magic_link_login_close:hover {
+    text-decoration: underline;
+}
+
+#lmn_email_address {
+    padding: 15px;
+}
+#lmn_email_address,
+.lmn_magic_link_login_send_link {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
 .lmn_btn {
 	border: 1px solid transparent;
 	border-radius: 4px;
@@ -34,12 +116,12 @@
 	background-color: #4267B2;
 }
 
-.lmn_btn.lmn_email_otp_login_button {
+.lmn_btn.lmn_magic_link_login_button {
 	background-color: #000000;
 }
 
 .lmn_btn.lmn_facebook_login_button .svg-bg,
-.lmn_btn.lmn_email_otp_login_button .svg-bg  {
+.lmn_btn.lmn_magic_link_login_button .svg-bg  {
 	background-color: transparent;
 }
 

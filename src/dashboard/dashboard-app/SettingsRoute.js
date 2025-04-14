@@ -1,11 +1,10 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Welcome from "@DashboardApp/pages/welcome/Welcome";
-import AdvancedSharing from "@DashboardApp/pages/advanced-settings/AdvancedSharing";
-import { FormDataProvider } from "../context/FormContext";
 import BrowserExtensions from "./pages/browser-extensions/BrowserExtensions";
 import DashboardModules from "./pages/dashboard-modules/DashboardModules";
 import SocialLogin from './pages/social-login/SocialLogin';
+import Settings from './pages/settings/Settings';
 import { useSelector } from "react-redux";
 
 import License from "./pages/license/License";
@@ -21,7 +20,6 @@ function SettingsRoute() {
   const temporaryLoginStatus = navStatus.dmTemporaryLogin;
   const browserExtensionStatus = navStatus.dmBrowserExtension;
   const SocialLoginStatus = navStatus.dmSocialLogin;
-  const OTPLoginStatus = navStatus.dmOTPLogin;
 
   let routePage = <p> Login Me Now Dashboard is Loading... </p>;
 
@@ -45,19 +43,9 @@ function SettingsRoute() {
             routePage = <SocialLogin />
           }
           break;
-        case 'otp-login':
-          if(OTPLoginStatus){
-            routePage = <OTPLogin />
-          }
-          break;
-        case 'advanced-sharing':
-          routePage = (
-            <FormDataProvider>
-              <AdvancedSharing />
-            </FormDataProvider>
-          );
-          break;
-
+        case 'settings':
+              routePage = <Settings />
+            break;
         case 'license':
           if(isProAvailable){
             routePage = <License />

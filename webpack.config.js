@@ -32,6 +32,7 @@ module.exports = {
 			'@Utils': path.resolve( __dirname, 'src/dashboard/utils/' ),
 			'@Skeleton': path.resolve( __dirname, 'src/dashboard/common/skeleton/' ),
 			'@Common': path.resolve( __dirname, 'src/dashboard/common/' ),
+			'@helpers': path.resolve( __dirname, 'src/helpers' ),
 		},
 	},
 	output: {

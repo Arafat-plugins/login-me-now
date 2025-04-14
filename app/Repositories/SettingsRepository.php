@@ -62,4 +62,68 @@ class SettingsRepository {
 		self::$settings[$key] = $value;
 		update_option( self::$option_name, self::$settings );
 	}
+
+	public function get_fields(): array {
+		$fields = [
+			[
+				'title'         => 'Site Title',
+				'description'   => 'Enter the title of your site.',
+				'id'            => 'site_title',
+				'placeholder'   => 'e.g., My Awesome Website',
+				'previous_data' => self::get( 'site_title', 'hello world' ),
+				'type'          => 'text',
+				'tab'           => 'general',
+			],
+			[
+				'title'         => 'Admin Email',
+				'description'   => 'The email address for admin notifications.',
+				'id'            => 'admin_email',
+				'placeholder'   => 'e.g., admin@example.com',
+				'previous_data' => self::get( 'admin_email', 'mehedi.2800@gmail.com' ),
+				'type'          => 'email',
+				'tab'           => 'advanced',
+			],
+			// [
+			// 	'title'         => 'Background Color',
+			// 	'id'            => 'background_color',
+			// 	'previous_data' => get_option( 'background_color', '#ffffff' ),
+			// 	'type'          => 'color',
+			// ],
+			// [
+			// 	'title'         => 'Enable Feature',
+			// 	'id'            => 'enable_feature',
+			// 	'previous_data' => get_option( 'enable_feature', false ),
+			// 	'type'          => 'switch',
+			// ],
+			// [
+			// 	'title'         => 'Upload Logo',
+			// 	'id'            => 'site_logo',
+			// 	'previous_data' => get_option( 'site_logo', '' ),
+			// 	'type'          => 'file',
+			// ],
+			// [
+			// 	'title'         => 'Select Option',
+			// 	'id'            => 'select_option',
+			// 	'placeholder'   => 'Choose an option',
+			// 	'previous_data' => get_option( 'select_option', '' ),
+			// 	'type'          => 'select',
+			// 	'options'       => [
+			// 		['label' => 'Option 1', 'value' => 'option_1'],
+			// 		['label' => 'Option 2', 'value' => 'option_2'],
+			// 		['label' => 'Option 3', 'value' => 'option_3'],
+			// 	],
+			// ],
+		];
+
+		return apply_filters( 'login_me_now_settings_fields', $fields );
+	}
+
+	public static function save( string $key, $value ) {
+
+		error_log( ' $key : ' . print_r( $value, true ) );
+
+		self::$settings       = get_option( self::$option_name, [] );
+		self::$settings[$key] = $value;
+		update_option( self::$option_name, self::$settings );
+	}
 }

@@ -1,172 +1,195 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import SettingsIcons from "./SettingsIcons";
-import { useSelector, useDispatch } from "react-redux";
-import ContainerSettings from "@DashboardApp/pages/settings/ContainerSettings";
-import SettingsSkeleton from "@DashboardApp/pages/settings/SettingsSkeleton";
-import { __ } from "@wordpress/i18n";
+import React, { useState, useEffect } from 'react';
+import { Layout, Form, Input, Button, Select, Space, message, Upload, InputNumber, Checkbox, Switch } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { __ } from '@wordpress/i18n';
+import postData from '@helpers/postData';
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+message.config({
+  top: '90vh',
+});
 
-const Settings = () => {
-  const query = new URLSearchParams(useLocation()?.search);
-  const dispatch = useDispatch();
-  const [socialSubItem, setSocialSubItem] = useState(false);
+const { Sider, Content } = Layout;
+const { TextArea } = Input;
 
-  const activeSettingsNavigationTab = useSelector(
-    (state) => state.activeSettingsNavigationTab
-  );
-  const initialStateSetFlag = useSelector((state) => state.initialStateSetFlag);
-
-  const isProAvailable = lmn_admin.pro_available ? true : false;
-
-  const navigation = wp.hooks.applyFilters(
-    "login_me_now_dashboard.settings_navigation",
-    [
-      {
-        name: __("General", "login-me-now"),
-        slug: "global-settings",
-        icon: SettingsIcons["global-settings"],
-      },
-      ...(isProAvailable
-        ? [
-            {
-              name: __("License", "login-me-now"),
-              slug: "license",
-              icon: SettingsIcons["license"],
-            },
-          ]
-        : []),
-    ]
-  );
+export default function Settings() {
+  const [fields, setFields] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [form] = Form.useForm();
+  const [activeTab, setActiveTab] = useState('email-magic-link');
 
   useEffect(() => {
-    const activePath = query.get("path");
-    const activeHash = query.get("settings");
-    const activeSettingsTabFromHash =
-      activeHash && "settings" === activePath ? activeHash : "global-settings";
-    dispatch({
-      type: "UPDATE_SETTINGS_ACTIVE_NAVIGATION_TAB",
-      payload: activeSettingsTabFromHash,
-    });
-  }, [initialStateSetFlag, activeSettingsNavigationTab]);
+    setLoading(true);
+    postData('login-me-now/admin/settings/fields')
+      .then((data) => {
+        setFields(data);
+        const formData = data.reduce((acc, field) => {
+          acc[field.id] = field.previous_data ?? (field.type === 'checkbox' || field.type === 'switch' ? false : '');
+          return acc;
+        }, {});
+        form.setFieldsValue(formData);
+      })
+      .catch((error) => {
+        message.error(__('Failed to load settings fields.', 'content-restriction'));
+        console.error(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [form]);
 
-  if (!initialStateSetFlag) {
-    return <SettingsSkeleton />;
-  }
-  const handleToggleSubItem = (e) => {
-    setSocialSubItem(!socialSubItem);
+  const tabs = [
+    { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction') },
+    // { key: 'general', label: __('General', 'content-restriction') },
+    // { key: 'advanced', label: __('Advanced', 'content-restriction') },
+  ];
+
+  const renderField = (field) => {
+    if (field.tab !== activeTab) return null;
+  
+    const commonProps = {
+      name: field.id,
+      label: field.title,
+      rules: [
+        { required: field.required, message: `${field.title} is required.` },
+        field.type === 'email' && { type: 'email', message: __('Invalid email format.', 'content-restriction') },
+      ].filter(Boolean),
+    };
+  
+    switch (field.type) {
+      case 'text':
+      case 'email':
+        return (
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <Input placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
+          </Form.Item>
+        );
+      case 'textarea':
+        return (
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <TextArea placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
+          </Form.Item>
+        );
+      case 'color':
+        return (
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <Input type="color" className="w-16 h-10 border rounded-lg" />
+          </Form.Item>
+        );
+      case 'file':
+        return (
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <Upload beforeUpload={() => false} maxCount={1}>
+              <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                {__('Upload File', 'content-restriction')}
+              </Button>
+            </Upload>
+          </Form.Item>
+        );
+      case 'number':
+        return (
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
+          </Form.Item>
+        );
+      case 'checkbox':
+        return (
+          <Form.Item key={field.id} name={field.id} valuePropName="checked" className="flex items-center space-x-2" tooltip={field.tooltip}>
+            <div>
+              <Checkbox>{field.description}</Checkbox>
+            </div>
+          </Form.Item>
+        );
+        case 'switch':
+          return (
+            <Form.Item
+              key={field.id}
+              name={field.id}
+              valuePropName="checked"
+              label={field.title}
+              initialValue={false}  // Ensure there's an initial value
+              rules={[
+                { required: false, message: `${field.title} is required.` },
+              ]}
+              tooltip={field.tooltip}
+            >
+             <Switch />
+            </Form.Item>
+          );        
+      case 'select':
+        return (
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <Select placeholder={field.placeholder} className="w-full">
+              {field.options?.map((option) => (
+                <Select.Option key={option.value} value={option.value}>
+                  {option.label}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        );
+      default:
+        return null;
+    }
   };
+  
+
+  const handleSave = (values) => {
+    setLoading(true); // Show loading state
+    postData('login-me-now/admin/settings/save', values)
+      .then((response) => {
+        if (response.success) {
+          message.success(__('Settings saved successfully!', 'content-restriction'));
+        } else {
+          throw new Error(response.message || __('Failed to save settings.', 'content-restriction'));
+        }
+      })
+      .catch((error) => {
+        message.error(error.message || __('Failed to save settings.', 'content-restriction'));
+        console.error('Save Settings Error:', error);
+      })
+      .finally(() => {
+        setLoading(false); // Remove loading state
+      });
+  };
+  
 
   return (
-    <div className="px-6 w-full">
-      <div className="mx-auto mt-10 mb-8 font-semibold text-2xl lg:max-w-[80rem]">
+    <div className="max-w-3xl mx-auto px-6 lg:max-w-screen-2xl">
+      <div className="mx-auto mt-10 mb-8 font-semibold text-2xl">
         Settings
       </div>
-      <main className="mx-auto my-[2.43rem] bg-white rounded-md shadow overflow-hidden min-h-[36rem] lg:max-w-[80rem]">
-        <div className="lg:grid lg:grid-cols-12 min-h-[36rem] h-full">
-          <aside className="py-6 sm:px-6 lg:py-6 lg:px-0 lg:col-span-2">
-            <nav className="space-y-1">
-              {navigation.map((item) => (
-                <>
-                  <Link
-                    to={{
-                      pathname: "admin.php",
-                      search: `?page=${lmn_admin.home_slug}&path=settings&settings=${item.slug}`,
-                    }}
-                    key={item.name}
-                    className={classNames(
-                      activeSettingsNavigationTab === item.slug
-                        ? "border-lmn text-lmn focus:text-lmn-hover active:text-lmn hover:text-lmn-hover stroke-lmn fill-lmn focus:stroke-lmn focus:fill-lmn hover:stroke-lmn hover:fill-lmn"
-                        : "border-white text-slate-800 stroke-slate-800 fill-slate-800 focus:text-slate-900 focus:border-slate-200 focus:stroke-slate-900 focus:fill-slate-900 hover:text-slate-900 hover:border-slate-200 hover:stroke-slate-900 hover:fill-slate-900",
-                      "border-l-4 group cursor-pointer py-3 pl-5 flex items-center text-base font-medium"
-                    )}
-                    onClick={() => {
-                      dispatch({
-                        type: "UPDATE_SETTINGS_ACTIVE_NAVIGATION_TAB",
-                        payload: item.slug,
-                      });
-                      if (item.slug === "social-login") {
-                        handleToggleSubItem();
-                      }
-                    }}
-                  >
-                    {item.icon}
-                    <span className="truncate">{item.name}</span>
-                    {item.name === "Social Login" ? (
-                      socialSubItem ? (
-                        <svg
-                          className="ml-[10%]"
-                          width="20px"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="m12 9.414-6.293 6.293a1 1 0 1 1 -1.414 -1.414l6.646-6.647a1.5 1.5 0 0 1 2.122 0L19.707 14.293a1 1 0 0 1 -1.414 1.414L12 9.414z"
-                            fill="#000000"
-                          />
-                        </svg>
-                      ) : (
-                        <svg
-                          className="ml-[10%]"
-                          width="20px"
-                          height="20px"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="m12 14.586 6.293-6.293a1 1 0 1 1 1.414 1.414l-6.646 6.647a1.5 1.5 0 0 1-2.122 0L4.293 9.707a1 1 0 0 1 1.414-1.414L12 14.586z"
-                            fill="#000000"
-                          />
-                        </svg>
-                      )
-                    ) : (
-                      ""
-                    )}
-                  </Link>
-                </>
-              ))}
-            </nav>
-            <nav className="space-y-1 mt-1">
-              {socialSubItem &&
-                navigation
-                  .find((item) => item.slug === "social-login")
-                  .subItems.map((subItem) => (
-                    <Link
-                      to={{
-                        pathname: "admin.php",
-                        search: `?page=${lmn_admin.home_slug}&path=settings&settings=${subItem.slug}`,
-                      }}
-                      key={subItem.name}
-                      className={classNames(
-                        activeSettingsNavigationTab === subItem.slug
-                          ? "border-lmn text-lmn focus:text-lmn-hover active:text-lmn hover:text-lmn-hover stroke-lmn fill-lmn focus:stroke-lmn focus:fill-lmn hover:stroke-lmn hover:fill-lmn"
-                          : "border-white text-slate-800 stroke-slate-800 fill-slate-800 focus:text-slate-900 focus:border-slate-200 focus:stroke-slate-900 focus:fill-slate-900 hover:text-slate-900 hover:border-slate-200 hover:stroke-slate-900 hover:fill-slate-900",
-                        "border-l-4 group cursor-pointer py-3 pl-9 flex items-center text-base font-medium"
-                      )}
-                      onClick={() => {
-                        dispatch({
-                          type: "UPDATE_SETTINGS_ACTIVE_NAVIGATION_TAB",
-                          payload: subItem.slug,
-                        });
-                      }}
-                    >
-                      {subItem.icon}
-                      <span className="truncate">{subItem.name}</span>
-                    </Link>
-                  ))}
-            </nav>
-          </aside>
-          <ContainerSettings />
-        </div>
-      </main>
+
+      <Layout className="mx-auto my-[2.43rem] bg-white rounded-md shadow overflow-hidden min-h-[36rem]">
+        <Sider width={250} className="bg-gray-100 p-6">
+          <ul className="space-y-2">
+            {tabs.map((tab) => (
+              <li
+                key={tab.key}
+                className={`p-2 rounded-lg cursor-pointer text-white ${activeTab === tab.key ? 'bg-blue-500' : 'hover:bg-gray-200 text-black'}`}
+                onClick={() => setActiveTab(tab.key)}
+              >
+                {tab.label}
+              </li>
+            ))}
+          </ul>
+        </Sider>
+
+        <Content className="p-10 w-full">
+          <Form form={form} layout="vertical" onFinish={handleSave} disabled={loading}>
+            <div className="grid grid-cols-1 gap-0">
+              {fields.map((field) => renderField(field))}
+            </div>
+            <Form.Item className="mt-6">
+              <Space>
+                <Button type="primary" htmlType="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg disabled:opacity-50">
+                  {__('Save Settings', 'content-restriction')}
+                </Button>
+              </Space>
+            </Form.Item>
+          </Form>
+        </Content>
+
+      </Layout>
     </div>
   );
-};
-
-export default Settings;
+}
