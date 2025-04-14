@@ -16,4 +16,8 @@ class Route extends \LoginMeNow\Common\RouteBase {
 	public function register_routes(): void {
 		$this->post( '/send-magic-link', [MagicLinkController::class, 'send_magic_link'] );
 	}
+
+	public function permission_check( \WP_REST_Request $request ) {
+		return true;
+	}
 }
