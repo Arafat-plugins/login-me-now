@@ -4,7 +4,7 @@ Tags: login, password, secure-login, wp-login, social-login
 Requires at least: 5.6
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.7.1
+Stable tag: 1.8
 License: GPLv3 or Any Later Version
 
 It feels like 8 plugins in one, it provides over 25 features making it the ultimate WP login solution.
@@ -160,6 +160,9 @@ No. That would be horrible not only for you but even more so for us (huge liabil
 Yes, you will know the activities in the dashboard of the recipient by checking the activity log option of this plugin. This means you can keep track of what the recipient is doing while they have temporary access to your website. 
 
 == Changelog ==
+
+= 1.8 – Apr 11, 2024 =
+* New: Email Magic Link
 
 = 1.7.1 – Nov 29, 2024 =
 * Fix: Translation Warning Issue
