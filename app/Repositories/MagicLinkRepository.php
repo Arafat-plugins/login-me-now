@@ -82,8 +82,8 @@ class MagicLinkRepository {
 		if (! $mail_sent) {
 			wp_send_json_error(array('message' => __('There is a critical error. Please contact site administrator.', 'login-me-now')));
 		}
-		return $mail_sent;
 
+		return $mail_sent;
 	}
 
 	/**
