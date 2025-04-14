@@ -2,7 +2,7 @@
 Contributors: Pluginly, HeyMehedi
 Tags: login, password, secure-login, wp-login, social-login
 Requires at least: 5.6
-Tested up to: 6.6
+Tested up to: 6.7.2
 Requires PHP: 7.4
 Stable tag: 1.8
 License: GPLv3 or Any Later Version
@@ -161,8 +161,15 @@ Yes, you will know the activities in the dashboard of the recipient by checking 
 
 == Changelog ==
 
+
 = 1.8 – Apr 11, 2024 =
 * New: Email Magic Link
+
+= 1.7.3 – Feb 27, 2025 =
+* Improve: Browser Token Login Security
+
+= 1.7.2 – Jan 27, 2024 =
+* Add: WooCommerce Account Registration Email Support
 
 = 1.7.1 – Nov 29, 2024 =
 * Fix: Translation Warning Issue
