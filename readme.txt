@@ -247,7 +247,7 @@ You can easily add Google and Facebook login buttons anywhere on your site using
 * Improved: Auto Login
 * Improved: JWT
 * Improved: Error Messages
-* Add: Onetime Link Access
+* Add: One-time Link Access
 * Add: Reusable Link Access
 * Add: New Dashboard & Settings
 * Fix: Algorithm not supported issue 
