@@ -7,140 +7,104 @@ Requires PHP: 7.4
 Stable tag: 1.8
 License: GPLv3 or Any Later Version
 
-It feels like 8 plugins in one, it provides over 25 features making it the ultimate WP login solution.
+It feels like 8 plugins in one — over 25 features packed into the ultimate login manager for WordPress.
 
 == Description ==
-[TRY LIVE DEMO](https://try.loginmenow.com/) | [ROADMAP](https://loginmenow.com/roadmap/) | [PRO](https://loginmenow.com/pricing/)  ( LIMITED LIFETIME DEAL🎁 ) 
 
-Experience a hassle-free WordPress login experience with just one click.
+==  What is Login Me Now? ==
+Login Me Now is a modern login solution that allows you to:
 
-Say goodbye to the frustration of remembering dashboard login credentials. No more tedious username/email & password entry every time you log in.
+- Grant temporary access with secure one-time links  
+- Log in without passwords  
+- Add Google & Facebook login  
+- Switch between user accounts  
+- Use browser extensions for instant dashboard access  
+- Track login activity  
+- …and so much more
 
-Login serves as the primary gateway to your website’s admin area. It is essential to make it secure and a seamless experience for users.
-Creating a separate admin login for outsiders is always risky and time-consuming. This process is lengthy:
+🎉 **NEW: Email Magic Link Login** – Let users log in securely by clicking a unique email link. No need for a password.
 
-➡️ Go to the Users option.
-➡️ Enter username and email address.
-➡️ Select the user role as ‘Administrator’
-➡️ Save the changes or click ‘Add New User’
+== Key Features ✨  ==
 
-So what if this entire process gets replaced using a simple process without creating a new username? Instant, automated, and in one click?
-Using this plugin, you can create a self-expiring login link to grant temporary access to an individual (developer, support staff, or concerned person).
+### Passwordless & Temporary Login
 
-<strong>SHARE LOGIN ACCESS IN SECONDS! ⏱️</strong>
+- **Generate login links** with expiration time (hours or days)
+- **No passwords** needed — just click and log in
+- Control access with validity periods and conditional settings
 
-It takes just <strong>3 simple steps:</strong>
+### Social Login
 
-1️⃣ <strong>Create login link:</strong> After clicking on the ‘generate access ‘ button, it will generate a temporary login link within 1 second.
+- **Google & Facebook login**
+- Use shortcodes to add login buttons anywhere
+- [PRO] Sync name and profile picture from social accounts
+- [PRO] Redirect users to any page after login
 
-2️⃣ <strong>Take full control of the login:</strong> Going to setting option you can set validity period for the login link so this will automatically expire after the time lapses.
+###  User Switching
 
-3️⃣ <strong>Share effortlessly:</strong> The login access is now conditional and will only be accessible based on the configured controls. Share the link with the concerned person.
+- Instantly switch between accounts (admin & users)
+- No need to log out and back in
 
-That was pretty easy, right?
+### Email Magic Link (NEW)
 
-<strong>PACKED WITH FEATURES</strong>
+- Send a secure login link via email
+- Password-free login experience for users
 
-<strong>EXPRESS LOGIN 🔐</strong>
+### Activity Log
 
-Generate login URL: Create a unique & conditional access link.
+- Built-in integration with [Simple History](https://wordpress.org/plugins/simple-history/)
+- Track who logged in, when, and how
 
-<strong>Passwordless login:</strong> No need for a username/ email and password – simply use the link to log in.
+###  Browser Extensions
 
-Time expiration option: Set an expiration time with option ranging from a few hours to a few days.
+- [Chrome Extension](https://chrome.google.com/webstore/detail/login-me-now-wordpress-lo/kkkofomlfhbepmpiplggmfpomdnkljoh)
+- [Firefox Add-on](https://addons.mozilla.org/en-US/firefox/addon/login-me-now/)
+- Encrypted JWT tokens — secure, fast, and no saved passwords
 
+---
 
-<strong>SOCIAL LOGIN 💻</strong>
+## Shortcodes
 
-<strong>Google & Facebook:</strong>
+- [login_me_now_google_button]
+- [login_me_now_facebook_button]
 
-<strong>User role selection:</strong> Set default role for users.
-
-<strong>Update existing user name:</strong> retrieve the existing user first, last, nick & display name from social account upon login using account. <strong>[PRO]</strong>
-
-<strong>Add user profile picture: </strong> retrieve the profile picture as avatar from users’ social account upon login or register using account. <strong>[PRO]</strong>
-
-<strong>One Tap prompt behavior:</strong> Enable/disable the option to close the prompt ( Google login box ) on outside click.
-
-<strong>Redirect after successful login:</strong> Redirect user to any page using the login link. It can be a blog post, product page, or any other page of your preference, the process is seamless. <strong>[PRO]</strong>
-
-<strong>SHORTCODE </strong>
-
-[login_me_now_google_button]
-Use this shortcode to put Google login button on any page/ post/ block.
-
-[login_me_now_facebook_button]
-Use this shortcode to put Facebook login button on any page/ post/ block.
+Add login buttons anywhere on your site.
 
 
-== USER SWITCHING 👥 ==
-<strong>Instantly switch to any user account:</strong> You can effortlessly swap between user accounts. This feature is useful for any WP website where administrators need to switch between multiple accounts.
+### Use Cases
+- **Site Owners:** Share access with teams or freelancers without creating new users
+- **Developers/Support Staff:** Ask clients to generate secure temporary access
+- **Agencies & Admins:** Manage multiple sites and switch accounts quickly
+
+### Integrations
+- All-in-One Content Restriction
+- WooCommerce
+- Easy Digital Downloads
+- Directorist
+- Simple History
+
+[Coming Soon:] Tutor LMS, BuddyBoss, BuddyPress, Dokan, bbPress, Fluent Support
 
 
-== COMING NEXT ==
-* Sign Up/Login form builder
-* OTP login
-* Express login for WooCommerce
-* Conditional login
+### Why Choose Login Me Now?
+- Strong security using encrypted, time-limited access
+- Fast & frictionless login UX
+- Designed for non-techies & power users
+- Friendly support and ongoing development
 
 
-== BROWSER EXTENSION AVAILABLE ==
+Also Try 👉 [All-in-One Content Restriction](https://wordpress.org/plugins/content-restriction/) – hide content based on rules, user roles, or subscription status.
 
-Experience instant dashboard access with just 1 click from browser extension.
+###  Pro Features
+- Social login profile sync (name, avatar)
+- Post-login redirect customization
+- More integrations & conditional login logic (coming soon)
+- WooCommerce express login (coming soon)
+- Sign up/login form builder (coming soon)
+- OTP login (coming soon)
+- Priority support
 
-👉 [Use Chrome extension](https://chrome.google.com/webstore/detail/login-me-now-wordpress-lo/kkkofomlfhbepmpiplggmfpomdnkljoh?hl=en&authuser=0)
-👉 [Use Mozilla addon](https://addons.mozilla.org/en-US/firefox/addon/login-me-now/)
+[🎁 Get Pro – Limited Lifetime Deal](https://loginmenow.com/pricing/)
 
-== WHY TO USE BROWSER EXTENSION? ==
-This saves you time, especially if you frequently log in to multiple website dashboards throughout the day. With the browser extension, a secure dashboard login is just one click away. Say goodbye to the hassle of navigating to the login panel and entering your username/email and password. The login process is secure, fast, and smooth!
-
-[youtube https://www.youtube.com/watch?v=2_GOOzZkeSM]
-
-<strong>PS:</strong> The browser extension never tracks or saves any of your website data or login credentials. When it comes to dashboard login access, it is securely stored in an encrypted format within the browser extension using an industry-standard JWT token. The generated token cannot be compressed to encrypt login credentials.
-
-
-== ACTIVITY LOG ==
-Keep an activity log of everything that occurs when a user logs in to the dashboard using the tokenized login link.
-
-This plugin comes with built in support for [Simple History](https://wordpress.org/plugins/simple-history/).
-
-
-== WHO IS THIS PLUGIN FOR? ==
-**For Websites Owner:**
-
-By leveraging this plugin, you can effectively mitigate security risks and boost team efficiency. It eliminates the burden of memorizing numerous unique passwords for various websites, streamlining the login process. Additionally, this plugin incorporates automatic expiration times and the option to disable access, simplifying the revocation of access for terminated team members or freelancers effortlessly.
-
-**For Developer / Support Staff:**
-
-To obtain admin access for troubleshooting your client’s WordPress setup, have the website owner install this plugin. With this plugin, your client can generate a secure and temporary login URL, eliminating the need for password requests or manual account creation. This streamlined process ensures you can efficiently resolve issues without compromising the security of your client’s website.
-
-== WHY CHOOSE THIS PLUGIN? ==
-**1. Easy to use**
-This plugin allows you to create secure, self-expiring login link within 2 seconds.
-
-**2. A balance of power and simplicity**
-Features of this plugin hit all the checkpoints for a full-fledged login manager solution for your website. This plugin is intently built with non-technical users in mind. Don’t need certain functionality? Toggle it off in the plugin modules.
-
-**3. Helpful support and continuous development**
-We prioritize providing excellent customer assistance, ensuring any issues or queries you may have will be promptly addressed. Moreover, our team is dedicated to continuously improving the plugin, adding new features and updates to enhance its functionality and security. With our commitment to support and development, you can confidently rely on this plugin to provide your weoptimized and secured login experience.
-
-
-== Compatibility + Integration ==
-* All-in-One Content Restriction
-* Simple History
-* WooCommerce
-* Directorist
-* Easy Digital Downloads
-* Fluent support (coming soon)
-* Dokan (coming soon)
-* BuddyBoss (coming soon)
-* BuddyPress (coming soon)
-* bbPress (coming soon)
-* Tutor LMS (coming soon) 
-
-
-== OTHER AMAZING PLUGIN BY US ==
-👉 [All-in-One Content Restriction](https://wordpress.org/plugins/content-restriction/)
 
 == FIND AN ISSUE? ==
 We are right here to help you in [support forum](https://wordpress.org/support/plugin/login-me-now/). You can post a topic. Please search existing topics before starting a new one.
