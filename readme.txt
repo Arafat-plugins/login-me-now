@@ -114,14 +114,22 @@ Install Login Me Now either via the WordPress.org plugin repository or by upload
 
 == Frequently Asked Questions ==
 
-= Do I need to use both the plugin & chrome extension to generate the access link / temporary login URL? =
-No, you don’t have to use the Chrome extension to generate the access link / temporary login URL. Chrome extension is for managing your multiple websites dashboard login so that you can easily log in to the dashboard right from the Chrome extension tab. It helps you to save time. When you use this extension you are only one click away from securely login into the dashboard.
+= Do I need both the plugin and the Chrome extension to generate the access link or temporary login URL? =
+No, the Chrome extension is optional. You can generate temporary access links directly from the plugin in your WordPress dashboard. The extension is designed to make logging into multiple WordPress sites easier by providing quick, one-click login access from your browser. It's a time-saver, but not required for creating the links.
 
-= Does Login Me Now plugin & extension have access to my passwords? =
-No. That would be horrible not only for you but even more so for us (huge liability)! Your passwords are always stored in an encrypted format in your WP database using industry-standard practices.
+= Does Login Me Now plugin and extension have access to my passwords? =
+No, absolutely not. Your passwords are stored securely in WordPress using industry-standard encryption techniques. The plugin and extension never have access to your password data, ensuring that your login credentials remain safe and private.
 
-= Can I track the activity of the temporary user/recipient on my website when they have access? =
-Yes, you will know the activities in the dashboard of the recipient by checking the activity log option of this plugin. This means you can keep track of what the recipient is doing while they have temporary access to your website. 
+= Can I track the activity of temporary users while they have access to my website? =
+Yes, you can track the activity of users who have temporary access. With the built-in activity log feature, you can monitor actions such as logins, page visits, and other interactions. This gives you complete visibility into how the temporary user interacts with your website during their access period.
+
+= Is the Email Magic Link feature secure? =
+Yes, the Email Magic Link feature is designed with security in mind. Each link is time-sensitive and can only be used once, minimizing the risk of unauthorized access. It's a secure and convenient password-free login option for users.
+
+
+= How do I add login buttons for Google and Facebook? =
+You can easily add Google and Facebook login buttons anywhere on your site using the shortcodes `[login_me_now_google_button]` and `[login_me_now_facebook_button]`. These shortcodes can be placed in posts, pages, or widgets to provide users with a seamless login experience through their social accounts.
+
 
 == Changelog ==
 
