@@ -20,7 +20,7 @@ use LoginMeNow\Repositories\SettingsRepository;
 			</g>
 		</g>
 	</svg>
-		</span><span><?php esc_html_e( 'Continue with Magic Link', 'login-me-now' ); ?></span>
+		</span><span><?php echo esc_html( SettingsRepository::get('magic_link_login_button_text','Continue with magic link')); ?></span>
 	</a>
 	<div class="lmn_magic_link_login_bg"></div>
 

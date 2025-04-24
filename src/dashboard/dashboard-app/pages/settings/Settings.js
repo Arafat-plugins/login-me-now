@@ -106,7 +106,7 @@ export default function Settings() {
               name={field.id}
               valuePropName="checked"
               label={field.title}
-              initialValue={false}  // Ensure there's an initial value
+              initialValue={true}  // Ensure there's an initial value
               rules={[
                 { required: false, message: `${field.title} is required.` },
               ]}

@@ -22,6 +22,15 @@ class Settings {
 			'type'          => 'switch',
 			'tab'           => 'email-magic-link',
 		];
+		$fields[] =[
+			'title'			=> 'Change button text',
+			'id'			=> 'magic_link_login_button_text',
+			'tooltip'		=> 'Edit magic button text',
+			'placeholder'	=> 'Continue with magic link',
+			'previous_data' => SettingsRepository::get('magic_link_login_button_text', 'Continue with magic link'),
+			'type' 			=> 'text',
+			'tab'			=> 'email-magic-link'
+		];
 
 		$fields[] = [
 			'title'         => 'Title',
