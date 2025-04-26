@@ -23,6 +23,7 @@ class Settings {
 			'tab'           => 'email-magic-link',
 		];
 
+
 		$fields[] = [
 			'title'         => 'Title',
 			'tooltip'       => 'Enter the form title',
@@ -41,6 +42,15 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'email_magic_link_description', 'Enter your registered email address to receive a quick login link directly in your inbox.' ),
 			'type'          => 'textarea',
 			'tab'           => 'email-magic-link',
+		];
+		$fields[] =[
+			'title'			=> 'Change button text',
+			'id'			=> 'magic_link_login_button_text',
+			'tooltip'		=> 'Enter magic button text',
+			'placeholder'	=> 'Continue with magic link',
+			'previous_data' => SettingsRepository::get('magic_link_login_button_text', 'Continue with magic link'),
+			'type' 			=> 'text',
+			'tab'			=> 'email-magic-link'
 		];
 
 		$fields[] = [
