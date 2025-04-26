@@ -46,7 +46,7 @@ class Settings {
 		$fields[] =[
 			'title'			=> 'Change button text',
 			'id'			=> 'magic_link_login_button_text',
-			'tooltip'		=> 'Edit magic button text',
+			'tooltip'		=> 'Enter magic button text',
 			'placeholder'	=> 'Continue with magic link',
 			'previous_data' => SettingsRepository::get('magic_link_login_button_text', 'Continue with magic link'),
 			'type' 			=> 'text',
