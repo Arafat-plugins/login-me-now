@@ -57,7 +57,6 @@ class Settings {
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
 		];
-
 		$fields[] = [
 			'title'         => 'Enter Google Client Secret',
 			'tooltip'       => 'Enter Google Client Secret',
@@ -67,7 +66,9 @@ class Settings {
 			'type'          => 'text',
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
+			'class'         => 'lmn-settings-separator',
 		];
+
 		$fields[] = [
 			'title'         => 'Enable one tap login',
 			'id'            => 'google_onetap',
@@ -108,7 +109,8 @@ class Settings {
 			'type'          => 'multi-select',
 			'options'       => $page_options,
 			'tab'           => 'google',
-			'if_has'        => ['google_login', 'google_onetap'],
+			'if_has'        => ['google_login', 'google_onetap'], // Have to add another logic for google_onetap_display_location === selected_pages
+			'class'         => 'lmn-settings-separator',
 		];
 
 		$fields[] = [
@@ -118,15 +120,6 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'google_cancel_on_tap_outside', false ),
 			'type'          => 'switch',
 			'if_has'        => ['google_login', 'google_onetap'],
-		];
-		$fields[] = [
-			'title'         => 'Show in Native Login Page',
-			'tooltip'       => 'Enable native login',
-			'id'            => 'google_native_login',
-			'previous_data' => SettingsRepository::get( 'google_native_login', false ),
-			'type'          => 'switch',
-			'tab'           => 'google',
-			'if_has'        => ['google_login'],
 		];
 		$fields[] = [
 			'title'         => 'User Role Permission Level',

@@ -15,7 +15,7 @@ export default function Settings() {
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
-  const [activeTab, setActiveTab] = useState('email-magic-link');
+  const [activeTab, setActiveTab] = useState('google');
 
   useEffect(() => {
     setLoading(true);
@@ -95,25 +95,25 @@ export default function Settings() {
       case 'text':
       case 'email':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <Input placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'textarea':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <TextArea placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'color':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <Input type="color" className="w-16 h-10 border rounded-lg" />
           </Form.Item>
         );
       case 'file':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <Upload beforeUpload={() => false} maxCount={1}>
               <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
                 {__('Upload File', 'content-restriction')}
@@ -123,7 +123,7 @@ export default function Settings() {
         );
       case 'number':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
           </Form.Item>
         );
@@ -137,23 +137,29 @@ export default function Settings() {
         );
         case 'switch':
           return (
-            <Form.Item
-              key={field.id}
-              name={field.id}
-              valuePropName="checked"
-              label={field.title}
-              initialValue={false}  // Ensure there's an initial value
-              rules={[
-                { required: false, message: `${field.title} is required.` },
-              ]}
-              tooltip={field.tooltip}
-            >
-             <Switch />
-            </Form.Item>
-          );        
+            <div className='custom-checkbox-class flex items-center space-x-2'>
+
+              <span className="text-sm text-gray-500">{field.title}</span>
+
+              <Form.Item
+                key={field.id}
+                name={field.id}
+                valuePropName="checked"
+                initialValue={false}  // Ensure there's an initial value
+                rules={[
+                  { required: false, message: `${field.title} is required.` },
+                ]}
+                tooltip={field.tooltip}
+                className={field.class}
+              >
+              <Switch />
+              </Form.Item>
+             
+            </div>
+          ); 
       case 'select':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <Select placeholder={field.placeholder} className="w-full">
               {field.options?.map((option) => (
                 <Select.Option key={option.value} value={option.value}>
@@ -165,7 +171,7 @@ export default function Settings() {
         );
         case 'multi-select':
           return (
-            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
               <Select
                 mode="multiple"
                 placeholder={field.placeholder || __('Select multiple options', 'content-restriction')}
