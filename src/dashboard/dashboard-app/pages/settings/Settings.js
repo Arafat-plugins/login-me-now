@@ -43,9 +43,23 @@ export default function Settings() {
     { key: 'facebook', label: __('Facebook', 'content-restriction') },
   ];
 
+  const [forceUpdate, setForceUpdate] = useState(false);
+
+  
   const renderField = (field) => {
     if (field.tab !== activeTab) return null;
   
+    if (field.if_has && Array.isArray(field.if_has)) {
+      const hasAllRequiredFields = field.if_has.every((requiredField) => {
+        const currentValue = form.getFieldValue(requiredField);
+        return !!currentValue; // must be truthy
+      });
+    
+      if (!hasAllRequiredFields) {
+        return null; // Hide the field if any required field is missing
+      }
+    }    
+
     const commonProps = {
       name: field.id,
       label: field.title,
@@ -175,7 +189,15 @@ export default function Settings() {
         </Sider>
 
         <Content className="p-10 w-full">
-          <Form form={form} layout="vertical" onFinish={handleSave} disabled={loading}>
+          <Form 
+          form={form} 
+          layout="vertical" 
+          onFinish={handleSave} 
+          disabled={loading}
+          onValuesChange={() => {
+            setForceUpdate(x => !x);
+          }}
+          >
             <div className="grid grid-cols-1 gap-0">
               {fields.map((field) => renderField(field))}
             </div>
