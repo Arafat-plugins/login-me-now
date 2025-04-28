@@ -84,7 +84,6 @@ export default function Settings() {
 
     const commonProps = {
       name: field.id,
-      label: field.title,
       rules: [
         { required: field.required, message: `${field.title} is required.` },
         field.type === 'email' && { type: 'email', message: __('Invalid email format.', 'content-restriction') },
@@ -95,25 +94,33 @@ export default function Settings() {
       case 'text':
       case 'email':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+          <Form.Item key={field.id} {...commonProps} className={field.class}>
+            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+            <span className="text-sm text-gray-500">{field.description}</span>
             <Input placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'textarea':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+             <span className="text-sm text-gray-500">{field.description}</span>
             <TextArea placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'color':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+             <span className="text-sm text-gray-500">{field.description}</span>
             <Input type="color" className="w-16 h-10 border rounded-lg" />
           </Form.Item>
         );
       case 'file':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+            <span className="text-sm text-gray-500">{field.description}</span>
             <Upload beforeUpload={() => false} maxCount={1}>
               <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
                 {__('Upload File', 'content-restriction')}
@@ -124,6 +131,8 @@ export default function Settings() {
       case 'number':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+            <span className="text-sm text-gray-500">{field.description}</span>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
           </Form.Item>
         );
@@ -139,7 +148,10 @@ export default function Settings() {
           return (
             <div className='custom-checkbox-class flex items-center space-x-2'>
 
-              <span className="text-sm text-gray-500">{field.title}</span>
+              <div>
+                <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+                <span className="text-sm text-gray-500">{field.description}</span>
+              </div>
 
               <Form.Item
                 key={field.id}
@@ -154,12 +166,14 @@ export default function Settings() {
               >
               <Switch />
               </Form.Item>
-             
             </div>
           ); 
       case 'select':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+             <span className="text-sm text-gray-500">{field.description}</span>
+
             <Select placeholder={field.placeholder} className="w-full">
               {field.options?.map((option) => (
                 <Select.Option key={option.value} value={option.value}>
@@ -172,6 +186,9 @@ export default function Settings() {
         case 'multi-select':
           return (
             <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+               <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+               <span className="text-sm text-gray-500">{field.description}</span>
+               
               <Select
                 mode="multiple"
                 placeholder={field.placeholder || __('Select multiple options', 'content-restriction')}

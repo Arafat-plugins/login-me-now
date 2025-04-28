@@ -40,7 +40,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Enable google login',
-			'tooltip'       => 'Enable google login',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_login',
 			'previous_data' => SettingsRepository::get( 'google_login', false ),
 			'type'          => 'switch',
@@ -49,7 +49,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Enter Google Client ID',
-			'tooltip'       => 'Enter Google Client ID',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_client_id',
 			'placeholder'   => 'ex: **********--**********.apps.googleusercontent.com',
 			'previous_data' => SettingsRepository::get( 'google_client_id', '' ),
@@ -59,7 +59,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Enter Google Client Secret',
-			'tooltip'       => 'Enter Google Client Secret',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_client_secret',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'google_client_secret', '' ),
@@ -71,6 +71,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Enable one tap login',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_onetap',
 			'previous_data' => SettingsRepository::get( 'google_onetap', false ),
 			'type'          => 'switch',
@@ -79,7 +80,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Select location',
-			'tooltip'       => 'Select a location',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_onetap_display_location',
 			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'siteWide' ),
 			'type'          => 'select',
@@ -103,7 +104,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Select page',
-			'tooltip'       => 'Select a page',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_pro_selected_pages',
 			'previous_data' => SettingsRepository::get( 'google_pro_selected_pages', [] ),
 			'type'          => 'multi-select',
@@ -115,7 +116,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Enable One Tap Prompt Behavior',
-			'tooltip'       => 'Enable automatic closing on outside clicks',
+			'description'   => 'Enable automatic closing on outside clicks',
 			'id'            => 'google_cancel_on_tap_outside',
 			'previous_data' => SettingsRepository::get( 'google_cancel_on_tap_outside', false ),
 			'type'          => 'switch',
@@ -123,6 +124,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'User Role Permission Level',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_pro_default_user_role',
 			'previous_data' => SettingsRepository::get( 'google_pro_default_user_role', '' ),
 			'type'          => 'select',
@@ -132,7 +134,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Update existing user name',
-			'tooltip'       => 'Enable update existing user name',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'google_update_existing_user_data', false ),
 			'type'          => 'switch',
@@ -141,7 +143,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Add user profile picture',
-			'tooltip'       => 'Enable user profile picture',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_pro_user_avatar',
 			'previous_data' => SettingsRepository::get( 'google_pro_user_avatar', false ),
 			'type'          => 'switch',
@@ -150,7 +152,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Redirect after successful login and registration',
-			'tooltip'       => 'Enter redirect link',
+			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_pro_redirect_url',
 			'previous_data' => SettingsRepository::get( 'google_pro_redirect_url', '' ),
 			'type'          => 'text',
