@@ -38,10 +38,31 @@ export default function Settings() {
   }, [form]);
 
   const tabs = [
-    { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction') },
-    { key: 'google', label: __('Google', 'content-restriction') },
-    { key: 'facebook', label: __('Facebook', 'content-restriction') },
+    { key: 'wp-admin', label: __('/wp-admin', 'content-restriction'), section: 'general' },
+    
+    { key: 'google', label: __('Google', 'content-restriction'), section: 'logins' },
+    { key: 'facebook', label: __('Facebook', 'content-restriction'), section: 'logins' },
+    { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction'), section: 'logins' },
+    { key: 'twitter-x', label: __('X(Twitter)', 'content-restriction'), section: 'logins', is_upcoming: true },
+    
+
+    { key: 'woocommerce', label: __('WooCommerce', 'content-restriction'), section: 'integrations' },
+    { key: 'directorist', label: __('Directorist', 'content-restriction'), section: 'integrations' },
+    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'content-restriction'), section: 'integrations' },
+    { key: 'fluent-support', label: __('Fluent Support', 'content-restriction'), section: 'integrations', is_upcoming: true  },
+
+    { key: 'custom-support', label: __('Customer Support', 'content-restriction'), section: 'more' },
+    { key: 'license', label: __('License', 'content-restriction'), section: 'more' },
+    // { key: 'custom-request', label: __('Custom Request', 'content-restriction'), section: 'more', is_upcoming: true  },
+    // { key: 'enterprise-features', label: __('Enterprise Features', 'content-restriction'), section: 'more', is_upcoming: true },
   ];
+
+  const sections = [
+    { key: 'general', label: __('General', 'content-restriction') },
+    { key: 'logins', label: __('Logins', 'content-restriction') },
+    { key: 'integrations', label: __('Integrations', 'content-restriction') },
+    { key: 'more', label: __('More', 'content-restriction') },
+  ]
 
   const [forceUpdate, setForceUpdate] = useState(false);
 
@@ -188,18 +209,48 @@ export default function Settings() {
       </div>
 
       <Layout className="mx-auto my-[2.43rem] bg-white rounded-md shadow overflow-hidden min-h-[36rem]">
-        <Sider width={250} className="bg-gray-100 p-6">
-          <ul className="space-y-2">
-            {tabs.map((tab) => (
-              <li
-                key={tab.key}
-                className={`p-2 rounded-lg cursor-pointer text-white ${activeTab === tab.key ? 'bg-blue-500' : 'hover:bg-gray-200 text-black'}`}
-                onClick={() => setActiveTab(tab.key)}
-              >
-                {tab.label}
-              </li>
-            ))}
+        <Sider width={350} className="bg-gray-100 p-6">
+
+          <ul className="space-y-4">
+            {sections.map((section) => {
+              const sectionTabs = tabs.filter((tab) => tab.section === section.key);
+
+              if (sectionTabs.length === 0) {
+                return null; // Skip rendering if no tabs under this section
+              }
+
+              return (
+                <li key={section.key}>
+                  <div className="text-gray-500 uppercase text-xs font-semibold mb-2">{section.label}</div>
+                  <ul className="space-y-2">
+                  {sectionTabs.map((tab) => (
+                    <li
+                      key={tab.key}
+                      className={`p-2 rounded-lg cursor-pointer flex items-center justify-between hover:bg-blue-100 hover:text-blue-700 text-white ${
+                        tab.is_upcoming ? 'opacity-50 cursor-not-allowed' : (activeTab === tab.key ? 'bg-blue-500' : 'hover:bg-gray-200 text-black')
+                      }`}
+                      onClick={() => {
+                        if (!tab.is_upcoming) {
+                          setActiveTab(tab.key);
+                        }
+                      }}
+                      title={tab.is_upcoming ? 'Coming Soon' : ''}
+                    >
+                      <span>{tab.label}</span>
+                      {tab.is_upcoming && (
+                        <span className="bg-yellow-300 text-yellow-900 text-xs font-semibold px-2 py-0.5 rounded-md ml-2">
+                          Upcoming
+                        </span>
+                      )}
+                    </li>
+                  ))}
+
+                  </ul>
+                </li>
+              );
+            })}
           </ul>
+
         </Sider>
 
         <Content className="p-10 w-full">
