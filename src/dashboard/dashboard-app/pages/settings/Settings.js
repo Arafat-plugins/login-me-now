@@ -39,8 +39,8 @@ export default function Settings() {
 
   const tabs = [
     { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction') },
-    // { key: 'general', label: __('General', 'content-restriction') },
-    // { key: 'advanced', label: __('Advanced', 'content-restriction') },
+    { key: 'google', label: __('Google', 'content-restriction') },
+    { key: 'facebook', label: __('Facebook', 'content-restriction') },
   ];
 
   const renderField = (field) => {
