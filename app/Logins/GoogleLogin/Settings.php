@@ -92,7 +92,7 @@ class Settings {
 					'label' => 'Site wide',
 				],
 				[
-					'label'  => 'Spacific page (pro)',
+					'label'  => 'Specific page (pro)',
 					'is_pro' => true,
 					'value'  => 'selected_pages',
 				],
@@ -101,13 +101,14 @@ class Settings {
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'   => 'Select page',
-			'tooltip' => 'Select a page',
-			'id'      => 'google_pro_selected_pages',
-			'type'    => 'select',
-			'options' => $page_options,
-			'tab'     => 'google',
-			'if_has'  => ['google_login', 'google_onetap'],
+			'title'         => 'Select page',
+			'tooltip'       => 'Select a page',
+			'id'            => 'google_pro_selected_pages',
+			'previous_data' => SettingsRepository::get( 'google_pro_selected_pages', [] ),
+			'type'          => 'multi-select',
+			'options'       => $page_options,
+			'tab'           => 'google',
+			'if_has'        => ['google_login', 'google_onetap'],
 		];
 
 		$fields[] = [
@@ -138,7 +139,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => 'Update existing user name',
-			'tooltip'       => 'Enable ubdate existing user name',
+			'tooltip'       => 'Enable update existing user name',
 			'id'            => 'google_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'google_update_existing_user_data', false ),
 			'type'          => 'switch',

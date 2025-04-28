@@ -141,6 +141,20 @@ export default function Settings() {
             </Select>
           </Form.Item>
         );
+        case 'multi-select':
+          return (
+            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+              <Select
+                mode="multiple"
+                placeholder={field.placeholder || __('Select multiple options', 'content-restriction')}
+                className="w-full"
+                options={field.options?.map(option => ({
+                  label: option.label,
+                  value: option.value,
+                }))}
+              />
+            </Form.Item>
+          );
       default:
         return null;
     }
