@@ -43,7 +43,8 @@ export default function Settings() {
     { key: 'google', label: __('Google', 'content-restriction'), section: 'logins' },
     { key: 'facebook', label: __('Facebook', 'content-restriction'), section: 'logins' },
     { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction'), section: 'logins' },
-    { key: 'twitter-x', label: __('X(Twitter)', 'content-restriction'), section: 'logins', is_upcoming: true },
+    { key: 'phone-otp', label: __('Phone OTP', 'content-restriction'), section: 'logins', is_upcoming: true },
+    // { key: 'twitter-x', label: __('X(Twitter)', 'content-restriction'), section: 'logins', is_upcoming: true },
     
 
     { key: 'woocommerce', label: __('WooCommerce', 'content-restriction'), section: 'integrations' },
@@ -254,6 +255,12 @@ export default function Settings() {
         </Sider>
 
         <Content className="p-10 w-full">
+          {activeTab && (
+            
+            <h2 className="text-2xl font-bold mb-6">
+              {tabs.find(tab => tab.key === activeTab)?.label}
+            </h2>
+          )}
           <Form 
           form={form} 
           layout="vertical" 

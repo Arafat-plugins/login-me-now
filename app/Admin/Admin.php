@@ -13,6 +13,7 @@ class Admin {
 		( new Enqueuer() );
 		( new Menu() );
 		( new Route() );
+		( new Settings() );
 
 		add_filter( 'admin_footer_text', [$this, 'admin_footer_link'], 99 );
 
