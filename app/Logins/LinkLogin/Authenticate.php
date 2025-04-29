@@ -19,6 +19,7 @@ class Authenticate {
 	use Hookable;
 
 	public function __construct() {
+		Settings::init();
 		$this->action( 'init', [$this, 'listen'] );
 	}
 

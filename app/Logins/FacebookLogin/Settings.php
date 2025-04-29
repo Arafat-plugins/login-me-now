@@ -54,6 +54,7 @@ class Settings {
 		$fields[] = [
 			'title'         => __( 'Show in native login page','login-me-now' ),
 			'tooltip'		=> __( 'Show in native login page','login-me-now' ),
+			'description'	=>__( 'Check, what would it look like! See <a href="https://try.loginmenow.com/wp-admin/"><strong>demo</strong></a>','login-me-now' ),
 			'id'            => 'facebook_native_login',
 			'previous_data' => SettingsRepository::get( 'facebook_native_login', true ),
 			'type'          => 'switch',
@@ -62,6 +63,7 @@ class Settings {
 		$fields[] = [
 			'title'         => __( 'User role permission level','login-me-now' ),
 			'tooltip'		=> __( 'Show in native login page','login-me-now' ),
+			'description'   => __( 'Select the role that will be assigned to new users who sign up', 'login-me-now' ),
 			'id'            => 'facebook_pro_default_user_role',
 			'previous_data' => SettingsRepository::get( 'facebook_pro_default_user_role', []),
 			'type'          => 'select',
@@ -71,6 +73,7 @@ class Settings {
 		$fields[] = [
 			'title'         => __( 'Update existing user name','login-me-now' ),
 			'tooltip'		=> __( 'Update existing user name','login-me-now' ),
+			'description'	=> __( 'Automatically retrieve the existing user first, last, nick & display name from facebook account upon login using facebook','login-me-now' ),
 			'id'            => 'facebook_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'facebook_update_existing_user_data', []),
 			'type'          => 'switch',

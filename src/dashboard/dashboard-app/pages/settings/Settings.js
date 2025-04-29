@@ -95,47 +95,59 @@ export default function Settings() {
       case 'text':
       case 'email':
         return (
-          <Form.Item key={field.id} {...commonProps} className={field.class}>
+          <div className='single-field-item'>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-            <Input disabled={field.is_pro} placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
-          </Form.Item>
+
+            <Form.Item key={field.id} {...commonProps} className={field.class}>
+              <Input disabled={field.is_pro} placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
+            </Form.Item>
+          </div>
         );
       case 'textarea':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+          <div className='single-field-item'>
              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
              <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <TextArea disabled={field.is_pro} placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
+          </div>
         );
       case 'color':
         return (
+          <div className='single-field-item'>
+            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <Input disabled={field.is_pro} type="color" className="w-16 h-10 border rounded-lg" />
           </Form.Item>
+          </div>
         );
       case 'file':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+            <div className='single-field-item'>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <Upload disabled={field.is_pro} beforeUpload={() => false} maxCount={1}>
               <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
                 {__('Upload File', 'content-restriction')}
               </Button>
             </Upload>
           </Form.Item>
+          </div>
         );
       case 'number':
         return (
+          <div className='single-field-item'>
+          <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+          <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
           <Form.Item disabled={field.is_pro} key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
           </Form.Item>
+          </div>
         );
       case 'checkbox':
         return (

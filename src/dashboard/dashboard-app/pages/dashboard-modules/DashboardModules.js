@@ -124,25 +124,25 @@ function DashboardModules() {
                           More powerful options
                         </h1>
                         <div className="flex flex-col flex-wrap content-center">
-                          <div className="inline-box-flex inline-size-auto">
+                          <div className="inline-box-flex inline-size-auto flex">
                             <TickIcon />
                             <span className="ml-3 mb-[12px] text-[#D9F5EC] text-[16px] noto-serif responsive-span">
                               Advanced social login
                             </span>
                           </div>
-                          <div className="inline-box-flex inline-size-auto">
+                          <div className="inline-box-flex inline-size-auto flex">
                             <TickIcon />
                             <span className="ml-3 mb-[12px] text-[#D9F5EC] text-[16px] noto-serif responsive-span">
                               Express login - WC & EDD
                             </span>
                           </div>
-                          <div className="inline-box-flex inline-size-auto">
+                          <div className="inline-box-flex inline-size-auto flex">
                             <TickIcon />
                             <span className="ml-3 mb-[12px] text-[#D9F5EC] text-[16px] noto-serif responsive-span">
                               OTP login
                             </span>
                           </div>
-                          <div className="inline-box-flex inline-size-auto">
+                          <div className="inline-box-flex inline-size-auto flex">
                             <TickIcon />
                             <span className="ml-3 mb-[12px] text-[#D9F5EC] text-[16px] noto-serif responsive-span">
                               24/7 Priority Support

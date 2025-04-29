@@ -14,6 +14,8 @@ use LoginMeNow\Utils\Module;
 class UserSwitchingLogin extends LoginBase {
 
 	public function setup(): void {
+		Settings::init();
+		
 		if ( ! Module::is_active( 'user_switching', true ) ) {
 			return;
 		}
