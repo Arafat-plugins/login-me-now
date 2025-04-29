@@ -3,12 +3,8 @@ import { useLocation } from "react-router-dom";
 import Welcome from "@DashboardApp/pages/welcome/Welcome";
 import BrowserExtensions from "./pages/browser-extensions/BrowserExtensions";
 import DashboardModules from "./pages/dashboard-modules/DashboardModules";
-import SocialLogin from './pages/social-login/SocialLogin';
 import Settings from './pages/settings/Settings';
 import { useSelector } from "react-redux";
-
-import License from "./pages/license/License";
-const isProAvailable = lmn_admin.pro_available ? true : false;
 
 function SettingsRoute() {
   const query = new URLSearchParams(useLocation().search);
@@ -38,19 +34,9 @@ function SettingsRoute() {
             routePage = <Welcome />;
           }
           break;
-        case 'social-login':
-          if(SocialLoginStatus){
-            routePage = <SocialLogin />
-          }
-          break;
         case 'settings':
               routePage = <Settings />
             break;
-        case 'license':
-          if(isProAvailable){
-            routePage = <License />
-          }
-          break;
 
         default:
           routePage = <DashboardModules />;

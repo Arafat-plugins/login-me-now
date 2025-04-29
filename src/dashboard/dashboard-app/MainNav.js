@@ -26,8 +26,6 @@ export default function MainNav() {
   const navStatus = useSelector((state) => state);
   const temporaryLoginStatus = navStatus.dmTemporaryLogin;
   const browserExtensionStatus = navStatus.dmBrowserExtension;
-  const SocialLoginStatus = navStatus.dmSocialLogin;
-  const OTPLoginStatus = navStatus.dmOTPLogin;
 
   navMenus = [
     {
@@ -44,11 +42,6 @@ export default function MainNav() {
       name: __("Browser Extension", "login-me-now"),
       slug: lmn_admin.home_slug,
       path: "browser-extensions",
-    },
-    SocialLoginStatus && {
-      name: __("Social Login", "login-me-now"),
-      slug: lmn_admin.home_slug,
-      path: "social-login",
     },
     {
       name: __("Settings", "login-me-now"),

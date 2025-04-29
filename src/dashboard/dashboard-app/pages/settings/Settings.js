@@ -38,7 +38,7 @@ export default function Settings() {
   }, [form]);
 
   const tabs = [
-    { key: 'wp-admin', label: __('/wp-admin', 'login-me-now'), section: 'general', is_upcoming: true },
+    { key: 'wp-admin', label: __('WP Admin', 'login-me-now'), section: 'general', is_upcoming: true },
     { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'general' },
     
     { key: 'google', label: __('Google', 'login-me-now'), section: 'logins' },
@@ -54,6 +54,7 @@ export default function Settings() {
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
 
     { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },
+    { key: 'security', label: __('Security', 'login-me-now'), section: 'more', is_upcoming: true },
     { key: 'activity-logs', label: __('Activity Logs', 'login-me-now'), section: 'more' },
     { key: 'license', label: __('License', 'login-me-now'), section: 'more' },
     // { key: 'custom-request', label: __('Custom Request', 'login-me-now'), section: 'more', is_upcoming: true  },
