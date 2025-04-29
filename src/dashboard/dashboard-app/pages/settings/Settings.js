@@ -48,15 +48,15 @@ export default function Settings() {
     // { key: 'twitter-x', label: __('X(Twitter)', 'login-me-now'), section: 'logins', is_upcoming: true },
     
 
-    { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations', is_upcoming: true },
-    { key: 'directorist', label: __('Directorist', 'login-me-now'), section: 'integrations', is_upcoming: true },
-    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations', is_upcoming: true },
+    { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations' },
+    { key: 'directorist', label: __('Directorist', 'login-me-now'), section: 'integrations' },
+    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
 
-    { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },
-    { key: 'security', label: __('Security', 'login-me-now'), section: 'more', is_upcoming: true },
     { key: 'activity-logs', label: __('Activity Logs', 'login-me-now'), section: 'more' },
     { key: 'license', label: __('License', 'login-me-now'), section: 'more' },
+    { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },
+    { key: 'security', label: __('Security', 'login-me-now'), section: 'more', is_upcoming: true },
     // { key: 'custom-request', label: __('Custom Request', 'login-me-now'), section: 'more', is_upcoming: true  },
     // { key: 'enterprise-features', label: __('Enterprise Features', 'login-me-now'), section: 'more', is_upcoming: true },
   ];

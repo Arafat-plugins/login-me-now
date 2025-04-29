@@ -9,9 +9,16 @@ namespace LoginMeNow\Integrations\WooCommerce;
 
 use LoginMeNow\Common\IntegrationBase;
 use LoginMeNow\Providers\LoginFormsServiceProvider;
+use LoginMeNow\Repositories\SettingsRepository;
 
 class WooCommerce extends IntegrationBase {
 	public function boot(): void {
+		Settings::init();
+
+		if ( SettingsRepository::get( 'google_native_login', true ) ) {
+			return;
+		}
+
 		add_action( 'woocommerce_login_form_start', [$this, 'add_form'] );
 
 		if ( class_exists( 'WC_Emails' ) ) {
