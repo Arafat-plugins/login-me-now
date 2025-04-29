@@ -38,7 +38,8 @@ export default function Settings() {
   }, [form]);
 
   const tabs = [
-    { key: 'wp-admin', label: __('/wp-admin', 'content-restriction'), section: 'general' },
+    { key: 'wp-admin', label: __('Wp-admin', 'content-restriction'), section: 'general' },
+    { key: 'delegate-access', label: __('Delegate Access', 'content-restriction'), section: 'general' },
     
     { key: 'google', label: __('Google', 'content-restriction'), section: 'logins' },
     { key: 'facebook', label: __('Facebook', 'content-restriction'), section: 'logins' },
@@ -95,32 +96,32 @@ export default function Settings() {
       case 'email':
         return (
           <Form.Item key={field.id} {...commonProps} className={field.class}>
-            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-            <span className="text-sm text-gray-500">{field.description}</span>
+            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <Input placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'textarea':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-             <span className="text-sm text-gray-500">{field.description}</span>
+             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <TextArea placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'color':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-             <span className="text-sm text-gray-500">{field.description}</span>
+             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <Input type="color" className="w-16 h-10 border rounded-lg" />
           </Form.Item>
         );
       case 'file':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-            <span className="text-sm text-gray-500">{field.description}</span>
+            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <Upload beforeUpload={() => false} maxCount={1}>
               <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
                 {__('Upload File', 'content-restriction')}
@@ -131,8 +132,8 @@ export default function Settings() {
       case 'number':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-            <span className="text-sm text-gray-500">{field.description}</span>
+            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
           </Form.Item>
         );
@@ -149,8 +150,8 @@ export default function Settings() {
             <div className='custom-checkbox-class flex items-center space-x-2'>
 
               <div>
-                <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-                <span className="text-sm text-gray-500">{field.description}</span>
+              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+              <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
               </div>
 
               <Form.Item
@@ -171,8 +172,8 @@ export default function Settings() {
       case 'select':
         return (
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-             <span className="text-sm text-gray-500">{field.description}</span>
+             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
 
             <Select placeholder={field.placeholder} className="w-full">
               {field.options?.map((option) => (
@@ -186,8 +187,8 @@ export default function Settings() {
         case 'multi-select':
           return (
             <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-               <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-               <span className="text-sm text-gray-500">{field.description}</span>
+               <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+               <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
                
               <Select
                 mode="multiple"
@@ -233,7 +234,7 @@ export default function Settings() {
       </div>
 
       <Layout className="mx-auto my-[2.43rem] bg-white rounded-md shadow overflow-hidden min-h-[36rem]">
-        <Sider width={350} className="bg-gray-100 p-6">
+        <Sider width={350} className="bg-black-100 p-6">
 
           <ul className="space-y-4">
             {sections.map((section) => {

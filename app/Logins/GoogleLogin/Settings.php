@@ -39,8 +39,8 @@ class Settings {
 		}
 
 		$fields[] = [
-			'title'         => 'Enable google login',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Enable google login','login-me-now' ),
+			'description'   => __("Enable google login", 'login-me-now' ),
 			'id'            => 'google_login',
 			'previous_data' => SettingsRepository::get( 'google_login', false ),
 			'type'          => 'switch',
@@ -48,8 +48,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => 'Enter Google Client ID',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         =>  __( 'Enter <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Google Client ID</a>','login-me-now' ),
+			'description'   => __( "Enter your google Client ID here.",'login-me-now' ),
 			'id'            => 'google_client_id',
 			'placeholder'   => 'ex: **********--**********.apps.googleusercontent.com',
 			'previous_data' => SettingsRepository::get( 'google_client_id', '' ),
@@ -58,8 +58,8 @@ class Settings {
 			'if_has'        => ['google_login'],
 		];
 		$fields[] = [
-			'title'         => 'Enter Google Client Secret',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Enter Google Client Secret', 'login-me-now' ),
+			'description'   => __( "Enter your Client Secret key here.",'login-me-now' ),
 			'id'            => 'google_client_secret',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'google_client_secret', '' ),
@@ -70,8 +70,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => 'Enable one tap login',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Enable one tap login','login-me-now' ),
+			'description'   => __( "Enable google one tap login",'login-me-now' ),
 			'id'            => 'google_onetap',
 			'previous_data' => SettingsRepository::get( 'google_onetap', false ),
 			'type'          => 'switch',
@@ -79,8 +79,8 @@ class Settings {
 			'if_has'        => ['google_login'],
 		];
 		$fields[] = [
-			'title'         => 'Select location',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Select location', 'login-me-now' ),
+			'description'   => __( "Choose a location.", 'login-me-now' ),
 			'id'            => 'google_onetap_display_location',
 			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'siteWide' ),
 			'type'          => 'select',
@@ -103,8 +103,8 @@ class Settings {
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'         => 'Select page',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Select page','login-me-now' ),
+			'description'   => __( "Select a specific page.",'login-me-now' ),
 			'id'            => 'google_pro_selected_pages',
 			'previous_data' => SettingsRepository::get( 'google_pro_selected_pages', [] ),
 			'type'          => 'multi-select',
@@ -115,16 +115,16 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => 'Enable One Tap Prompt Behavior',
-			'description'   => 'Enable automatic closing on outside clicks',
+			'title'         => __( 'Enable One Tap Prompt Behavior','login-me-now' ),
+			'description'   => __( 'Enable automatic closing on outside clicks.','login-me-now' ),
 			'id'            => 'google_cancel_on_tap_outside',
 			'previous_data' => SettingsRepository::get( 'google_cancel_on_tap_outside', false ),
 			'type'          => 'switch',
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'         => 'User Role Permission Level',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'User Role Permission Level','login-me-now' ),
+			'description'   => __( "Select a permission option for users.",'login-me-now' ),
 			'id'            => 'google_pro_default_user_role',
 			'previous_data' => SettingsRepository::get( 'google_pro_default_user_role', '' ),
 			'type'          => 'select',
@@ -133,8 +133,8 @@ class Settings {
 			'if_has'        => ['google_login'],
 		];
 		$fields[] = [
-			'title'         => 'Update existing user name',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Update existing user name','login-me-now' ),
+			'description'   => __("Automatically retrieve the existing user first, last, nick & display name from google account upon login using gmail ",'login-me-now'),
 			'id'            => 'google_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'google_update_existing_user_data', false ),
 			'type'          => 'switch',
@@ -142,8 +142,8 @@ class Settings {
 			'if_has'        => ['google_login'],
 		];
 		$fields[] = [
-			'title'         => 'Add user profile picture',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Add user profile picture','login-me-now' ),
+			'description'   => __("Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",'login-me-now'),
 			'id'            => 'google_pro_user_avatar',
 			'previous_data' => SettingsRepository::get( 'google_pro_user_avatar', false ),
 			'type'          => 'switch',
@@ -151,8 +151,8 @@ class Settings {
 			'if_has'        => ['google_login'],
 		];
 		$fields[] = [
-			'title'         => 'Redirect after successful login and registration',
-			'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'title'         => __( 'Redirect after successful login and registration' ),
+			// 'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_pro_redirect_url',
 			'previous_data' => SettingsRepository::get( 'google_pro_redirect_url', '' ),
 			'type'          => 'text',

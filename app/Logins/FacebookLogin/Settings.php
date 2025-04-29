@@ -28,40 +28,40 @@ class Settings {
 		}
 
 		$fields[] = [
-			'title'         => 'Enable facebook login',
-			'tooltip'		=> 'Enbale facebook login',
+			'title'         => __( 'Enable facebook login','login-me-now' ),
+			'tooltip'		=> __('Enbale facebook login','login-me-now' ),
 			'id'            => 'facebook_login',
 			'previous_data' => SettingsRepository::get( 'facebook_login', false ),
 			'type'          => 'switch',
 			'tab'           => 'facebook',
 		];
 		$fields[] = [
-			'title'         => 'Enter facebook App ID',
-			'tooltip'		=> 'Enbale facebook login',
+			'title'         => __( 'Enter <a href="https://developers.facebook.com/apps/">facebook App ID</a>','login-me-now' ),
+			'tooltip'		=> __( 'Enbale facebook login','login-me-now' ),
 			'id'            => 'facebook_app_id',
 			'previous_data' => SettingsRepository::get( 'facebook_app_id', '' ),
 			'type'          => 'text',
 			'tab'           => 'facebook',
 		];
 		$fields[] = [
-			'title'         => 'Enter Facebook App Secret',
-			'tooltip'		=> 'Enter Facebook App Secret',
+			'title'         => __( 'Enter Facebook App Secret','login-me-now' ),
+			'tooltip'		=> __( 'Enter Facebook App Secret','login-me-now' ),
 			'id'            => 'facebook_app_secret',
 			'previous_data' => SettingsRepository::get( 'facebook_app_secret', '' ),
 			'type'          => 'text',
 			'tab'           => 'facebook',
 		];
 		$fields[] = [
-			'title'         => 'Show in native login page',
-			'tooltip'		=> 'Show in native login page',
+			'title'         => __( 'Show in native login page','login-me-now' ),
+			'tooltip'		=> __( 'Show in native login page','login-me-now' ),
 			'id'            => 'facebook_native_login',
 			'previous_data' => SettingsRepository::get( 'facebook_native_login', true ),
 			'type'          => 'switch',
 			'tab'           => 'facebook',
 		];
 		$fields[] = [
-			'title'         => 'User role permission level',
-			'tooltip'		=> 'Show in native login page',
+			'title'         => __( 'User role permission level','login-me-now' ),
+			'tooltip'		=> __( 'Show in native login page','login-me-now' ),
 			'id'            => 'facebook_pro_default_user_role',
 			'previous_data' => SettingsRepository::get( 'facebook_pro_default_user_role', []),
 			'type'          => 'select',
@@ -69,8 +69,8 @@ class Settings {
 			'tab'           => 'facebook',
 		];
 		$fields[] = [
-			'title'         => 'Update existing user name',
-			'tooltip'		=> 'Update existing user name',
+			'title'         => __( 'Update existing user name','login-me-now' ),
+			'tooltip'		=> __( 'Update existing user name','login-me-now' ),
 			'id'            => 'facebook_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'facebook_update_existing_user_data', []),
 			'type'          => 'switch',
