@@ -8,9 +8,12 @@
 namespace LoginMeNow\Integrations\SimpleHistory;
 
 use LoginMeNow\Common\IntegrationBase;
+use LoginMeNow\Integrations\SimpleHistory\Settings;
 
 class SimpleHistory extends IntegrationBase {
 	public function boot(): void {
+		Settings::init();
+		
 		if ( ! self::enabled() ) {
 			return;
 		}

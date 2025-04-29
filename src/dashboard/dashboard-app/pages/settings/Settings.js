@@ -29,7 +29,7 @@ export default function Settings() {
         form.setFieldsValue(formData);
       })
       .catch((error) => {
-        message.error(__('Failed to load settings fields.', 'content-restriction'));
+        message.error(__('Failed to load settings fields.', 'login-me-now'));
         console.error(error);
       })
       .finally(() => {
@@ -38,32 +38,33 @@ export default function Settings() {
   }, [form]);
 
   const tabs = [
-    { key: 'wp-admin', label: __('Wp-admin', 'content-restriction'), section: 'general' },
-    { key: 'delegate-access', label: __('Delegate Access', 'content-restriction'), section: 'general' },
+    { key: 'wp-admin', label: __('/wp-admin', 'login-me-now'), section: 'general', is_upcoming: true },
+    { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'general' },
     
-    { key: 'google', label: __('Google', 'content-restriction'), section: 'logins' },
-    { key: 'facebook', label: __('Facebook', 'content-restriction'), section: 'logins' },
-    { key: 'email-magic-link', label: __('Email Magic Link', 'content-restriction'), section: 'logins' },
-    { key: 'phone-otp', label: __('Phone OTP', 'content-restriction'), section: 'logins', is_upcoming: true },
-    // { key: 'twitter-x', label: __('X(Twitter)', 'content-restriction'), section: 'logins', is_upcoming: true },
+    { key: 'google', label: __('Google', 'login-me-now'), section: 'logins' },
+    { key: 'facebook', label: __('Facebook', 'login-me-now'), section: 'logins' },
+    { key: 'email-magic-link', label: __('Email Magic Link', 'login-me-now'), section: 'logins' },
+    { key: 'phone-otp', label: __('Phone OTP', 'login-me-now'), section: 'logins', is_upcoming: true },
+    // { key: 'twitter-x', label: __('X(Twitter)', 'login-me-now'), section: 'logins', is_upcoming: true },
     
 
-    { key: 'woocommerce', label: __('WooCommerce', 'content-restriction'), section: 'integrations' },
-    { key: 'directorist', label: __('Directorist', 'content-restriction'), section: 'integrations' },
-    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'content-restriction'), section: 'integrations' },
-    { key: 'fluent-support', label: __('Fluent Support', 'content-restriction'), section: 'integrations', is_upcoming: true  },
+    { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations', is_upcoming: true },
+    { key: 'directorist', label: __('Directorist', 'login-me-now'), section: 'integrations', is_upcoming: true },
+    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
+    { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
 
-    { key: 'custom-support', label: __('Customer Support', 'content-restriction'), section: 'more' },
-    { key: 'license', label: __('License', 'content-restriction'), section: 'more' },
-    // { key: 'custom-request', label: __('Custom Request', 'content-restriction'), section: 'more', is_upcoming: true  },
-    // { key: 'enterprise-features', label: __('Enterprise Features', 'content-restriction'), section: 'more', is_upcoming: true },
+    { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },
+    { key: 'activity-logs', label: __('Activity Logs', 'login-me-now'), section: 'more' },
+    { key: 'license', label: __('License', 'login-me-now'), section: 'more' },
+    // { key: 'custom-request', label: __('Custom Request', 'login-me-now'), section: 'more', is_upcoming: true  },
+    // { key: 'enterprise-features', label: __('Enterprise Features', 'login-me-now'), section: 'more', is_upcoming: true },
   ];
 
   const sections = [
-    { key: 'general', label: __('General', 'content-restriction') },
-    { key: 'logins', label: __('Logins', 'content-restriction') },
-    { key: 'integrations', label: __('Integrations', 'content-restriction') },
-    { key: 'more', label: __('More', 'content-restriction') },
+    { key: 'general', label: __('General', 'login-me-now') },
+    { key: 'logins', label: __('Logins', 'login-me-now') },
+    { key: 'integrations', label: __('Integrations', 'login-me-now') },
+    { key: 'more', label: __('More', 'login-me-now') },
   ]
 
   const [forceUpdate, setForceUpdate] = useState(false);
@@ -87,7 +88,7 @@ export default function Settings() {
       name: field.id,
       rules: [
         { required: field.required, message: `${field.title} is required.` },
-        field.type === 'email' && { type: 'email', message: __('Invalid email format.', 'content-restriction') },
+        field.type === 'email' && { type: 'email', message: __('Invalid email format.', 'login-me-now') },
       ].filter(Boolean),
     };
   
@@ -133,7 +134,7 @@ export default function Settings() {
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <Upload disabled={field.is_pro} beforeUpload={() => false} maxCount={1}>
               <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
-                {__('Upload File', 'content-restriction')}
+                {__('Upload File', 'login-me-now')}
               </Button>
             </Upload>
           </Form.Item>
@@ -209,7 +210,7 @@ export default function Settings() {
                 <Select
                   disabled={field.is_pro}
                   mode="multiple"
-                  placeholder={field.placeholder || __('Select multiple options', 'content-restriction')}
+                  placeholder={field.placeholder || __('Select multiple options', 'login-me-now')}
                   className="w-full"
                   options={field.options?.map(option => ({
                     label: option.label,
@@ -230,13 +231,13 @@ export default function Settings() {
     postData('login-me-now/admin/settings/save', values)
       .then((response) => {
         if (response.success) {
-          message.success(__('Settings saved successfully!', 'content-restriction'));
+          message.success(__('Settings saved successfully!', 'login-me-now'));
         } else {
-          throw new Error(response.message || __('Failed to save settings.', 'content-restriction'));
+          throw new Error(response.message || __('Failed to save settings.', 'login-me-now'));
         }
       })
       .catch((error) => {
-        message.error(error.message || __('Failed to save settings.', 'content-restriction'));
+        message.error(error.message || __('Failed to save settings.', 'login-me-now'));
         console.error('Save Settings Error:', error);
       })
       .finally(() => {
@@ -318,7 +319,7 @@ export default function Settings() {
             <Form.Item className="mt-6">
               <Space>
                 <Button type="primary" htmlType="submit" className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg disabled:opacity-50">
-                  {__('Save Settings', 'content-restriction')}
+                  {__('Save Settings', 'login-me-now')}
                 </Button>
               </Space>
             </Form.Item>

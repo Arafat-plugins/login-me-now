@@ -14,7 +14,6 @@ use LoginMeNow\Utils\Module;
 use LoginMeNow\Utils\Random;
 use LoginMeNow\Utils\Time;
 use LoginMeNow\Utils\Translator;
-use LoginMeNow\Logins\UserSwitchingLogin\Settings;
 use WP_User;
 
 /**
@@ -22,11 +21,13 @@ use WP_User;
  */
 class LinkLogin extends LoginBase {
 	use Singleton;
-	
+
 	private $token_key = 'lmn_token';
 	private $error;
-	
+
 	public function setup(): void {
+		Settings::init();
+
 		if ( ! Module::is_active( 'temporary_login', true ) ) {
 			return;
 		}

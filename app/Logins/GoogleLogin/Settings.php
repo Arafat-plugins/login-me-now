@@ -155,7 +155,7 @@ class Settings {
 			'is_pro'        => true,
 		];
 		$fields[] = [
-			'title'         => __( 'Redirect after successful login and registration' ),
+			'title'         => __( 'Redirect after successful login and registration', 'login-me-now' ),
 			// 'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
 			'id'            => 'google_pro_redirect_url',
 			'previous_data' => SettingsRepository::get( 'google_pro_redirect_url', '' ),
