@@ -9,7 +9,6 @@ import Title from "../components/Title";
 import SubTitle from "../components/SubTitle";
 import { useState } from "react";
 import lockImg from "../../../../images/lock.png";
-import browserSsImg from "../../../../images/browser-extension-ss.png";
 import { Tooltip } from "antd";
 import Video from "./Video";
 

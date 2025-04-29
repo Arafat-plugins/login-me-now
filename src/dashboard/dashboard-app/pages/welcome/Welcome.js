@@ -7,7 +7,6 @@ import NeedSupport from "../components/NeedSupport";
 import Title from "../components/Title";
 import SubTitle from "../components/SubTitle";
 import { useState } from "react";
-import tempSsImg from "../../../../images/temporary-login-ss.png";
 import { Tooltip } from "antd";
 
 const classNames = (...classes) => classes.filter(Boolean).join(" ");
