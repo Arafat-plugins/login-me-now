@@ -98,7 +98,7 @@ export default function Settings() {
           <Form.Item key={field.id} {...commonProps} className={field.class}>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-            <Input placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
+            <Input disabled={field.is_pro} placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'textarea':
@@ -106,7 +106,7 @@ export default function Settings() {
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
              <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-            <TextArea placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
+            <TextArea disabled={field.is_pro} placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
           </Form.Item>
         );
       case 'color':
@@ -114,7 +114,7 @@ export default function Settings() {
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
              <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-            <Input type="color" className="w-16 h-10 border rounded-lg" />
+            <Input disabled={field.is_pro} type="color" className="w-16 h-10 border rounded-lg" />
           </Form.Item>
         );
       case 'file':
@@ -122,7 +122,7 @@ export default function Settings() {
           <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-            <Upload beforeUpload={() => false} maxCount={1}>
+            <Upload disabled={field.is_pro} beforeUpload={() => false} maxCount={1}>
               <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
                 {__('Upload File', 'content-restriction')}
               </Button>
@@ -131,7 +131,7 @@ export default function Settings() {
         );
       case 'number':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+          <Form.Item disabled={field.is_pro} key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
@@ -141,7 +141,7 @@ export default function Settings() {
         return (
           <Form.Item key={field.id} name={field.id} valuePropName="checked" className="flex items-center space-x-2" tooltip={field.tooltip}>
             <div>
-              <Checkbox>{field.description}</Checkbox>
+              <Checkbox disabled={field.is_pro}>{field.description}</Checkbox>
             </div>
           </Form.Item>
         );
@@ -150,8 +150,8 @@ export default function Settings() {
             <div className='custom-checkbox-class flex items-center space-x-2'>
 
               <div>
-              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-              <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+               <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+                <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
               </div>
 
               <Form.Item
@@ -165,41 +165,47 @@ export default function Settings() {
                 tooltip={field.tooltip}
                 className={field.class}
               >
-              <Switch />
+              <Switch disabled={field.is_pro} />
               </Form.Item>
             </div>
           ); 
       case 'select':
         return (
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-
-            <Select placeholder={field.placeholder} className="w-full">
-              {field.options?.map((option) => (
-                <Select.Option key={option.value} value={option.value}>
-                  {option.label}
-                </Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
-        );
-        case 'multi-select':
-          return (
-            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-               <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-               <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-               
-              <Select
-                mode="multiple"
-                placeholder={field.placeholder || __('Select multiple options', 'content-restriction')}
-                className="w-full"
-                options={field.options?.map(option => ({
-                  label: option.label,
-                  value: option.value,
-                }))}
-              />
+          <div className={field.class}>
+            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+            <span className="text-sm text-gray-500">{field.description}</span>
+            
+            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+              <Select disabled={field.is_pro} placeholder={field.placeholder} className="w-full">
+                {field.options?.map((option) => (
+                  <Select.Option key={option.value} value={option.value}>
+                    {option.label}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
+          </div>
+        );
+
+      case 'multi-select':
+          return (
+            <div className={field.class}>
+              <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+              <span className="text-sm text-gray-500">{field.description}</span>
+
+              <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
+                <Select
+                  disabled={field.is_pro}
+                  mode="multiple"
+                  placeholder={field.placeholder || __('Select multiple options', 'content-restriction')}
+                  className="w-full"
+                  options={field.options?.map(option => ({
+                    label: option.label,
+                    value: option.value,
+                  }))}
+                />
+              </Form.Item>
+            </div>
           );
       default:
         return null;

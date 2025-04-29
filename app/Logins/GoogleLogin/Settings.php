@@ -39,8 +39,8 @@ class Settings {
 		}
 
 		$fields[] = [
-			'title'         => __( 'Enable google login','login-me-now' ),
-			'description'   => __("Enable google login", 'login-me-now' ),
+			'title'         => __( 'Enable google login', 'login-me-now' ),
+			'description'   => __( "Enable google login", 'login-me-now' ),
 			'id'            => 'google_login',
 			'previous_data' => SettingsRepository::get( 'google_login', false ),
 			'type'          => 'switch',
@@ -48,8 +48,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         =>  __( 'Enter <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Google Client ID</a>','login-me-now' ),
-			'description'   => __( "Enter your google Client ID here.",'login-me-now' ),
+			'title'         => __( 'Enter <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Google Client ID</a>', 'login-me-now' ),
+			'description'   => __( "Enter your google Client ID here.", 'login-me-now' ),
 			'id'            => 'google_client_id',
 			'placeholder'   => 'ex: **********--**********.apps.googleusercontent.com',
 			'previous_data' => SettingsRepository::get( 'google_client_id', '' ),
@@ -59,7 +59,7 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => __( 'Enter Google Client Secret', 'login-me-now' ),
-			'description'   => __( "Enter your Client Secret key here.",'login-me-now' ),
+			'description'   => __( "Enter your Client Secret key here.", 'login-me-now' ),
 			'id'            => 'google_client_secret',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'google_client_secret', '' ),
@@ -70,8 +70,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enable one tap login','login-me-now' ),
-			'description'   => __( "Enable google one tap login",'login-me-now' ),
+			'title'         => __( 'Enable one tap login', 'login-me-now' ),
+			'description'   => __( "Enable google one tap login", 'login-me-now' ),
 			'id'            => 'google_onetap',
 			'previous_data' => SettingsRepository::get( 'google_onetap', false ),
 			'type'          => 'switch',
@@ -95,16 +95,16 @@ class Settings {
 				],
 				[
 					'label'  => 'Specific page (pro)',
-					'is_pro' => true,
 					'value'  => 'selected_pages',
+					'is_pro' => true,
 				],
 			],
 			'tab'           => 'google',
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'         => __( 'Select page','login-me-now' ),
-			'description'   => __( "Select a specific page.",'login-me-now' ),
+			'title'         => __( 'Select page', 'login-me-now' ),
+			'description'   => __( "Select a specific page.", 'login-me-now' ),
 			'id'            => 'google_pro_selected_pages',
 			'previous_data' => SettingsRepository::get( 'google_pro_selected_pages', [] ),
 			'type'          => 'multi-select',
@@ -112,43 +112,47 @@ class Settings {
 			'tab'           => 'google',
 			'if_has'        => ['google_login', 'google_onetap'], // Have to add another logic for google_onetap_display_location === selected_pages
 			'class'         => 'lmn-settings-separator',
+			'is_pro'        => true,
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enable One Tap Prompt Behavior','login-me-now' ),
-			'description'   => __( 'Enable automatic closing on outside clicks.','login-me-now' ),
+			'title'         => __( 'Enable One Tap Prompt Behavior', 'login-me-now' ),
+			'description'   => __( 'Enable automatic closing on outside clicks.', 'login-me-now' ),
 			'id'            => 'google_cancel_on_tap_outside',
 			'previous_data' => SettingsRepository::get( 'google_cancel_on_tap_outside', false ),
 			'type'          => 'switch',
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'         => __( 'User Role Permission Level','login-me-now' ),
-			'description'   => __( "Select a permission option for users.",'login-me-now' ),
+			'title'         => __( 'User Role Permission Level', 'login-me-now' ),
+			'description'   => __( "Select a permission option for users.", 'login-me-now' ),
 			'id'            => 'google_pro_default_user_role',
 			'previous_data' => SettingsRepository::get( 'google_pro_default_user_role', '' ),
 			'type'          => 'select',
 			'options'       => $roles_options,
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
+			'is_pro'        => true,
 		];
 		$fields[] = [
-			'title'         => __( 'Update existing user name','login-me-now' ),
-			'description'   => __("Automatically retrieve the existing user first, last, nick & display name from google account upon login using gmail ",'login-me-now'),
+			'title'         => __( 'Update existing user name', 'login-me-now' ),
+			'description'   => __( "Automatically retrieve the existing user first, last, nick & display name from google account upon login using gmail ", 'login-me-now' ),
 			'id'            => 'google_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'google_update_existing_user_data', false ),
 			'type'          => 'switch',
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
+			'is_pro'        => true,
 		];
 		$fields[] = [
-			'title'         => __( 'Add user profile picture','login-me-now' ),
-			'description'   => __("Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",'login-me-now'),
+			'title'         => __( 'Add user profile picture', 'login-me-now' ),
+			'description'   => __( "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail", 'login-me-now' ),
 			'id'            => 'google_pro_user_avatar',
 			'previous_data' => SettingsRepository::get( 'google_pro_user_avatar', false ),
 			'type'          => 'switch',
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
+			'is_pro'        => true,
 		];
 		$fields[] = [
 			'title'         => __( 'Redirect after successful login and registration' ),
@@ -158,6 +162,7 @@ class Settings {
 			'type'          => 'text',
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
+			'is_pro'        => true,
 		];
 
 		return $fields;
