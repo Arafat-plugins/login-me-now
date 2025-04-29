@@ -42,6 +42,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'facebook_app_id', '' ),
 			'type'          => 'text',
 			'tab'           => 'facebook',
+			'if_has'		=>[ 'facebook_login' ],
 		];
 		$fields[] = [
 			'title'         => __( 'Enter Facebook App Secret','login-me-now' ),
@@ -50,6 +51,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'facebook_app_secret', '' ),
 			'type'          => 'text',
 			'tab'           => 'facebook',
+			'if_has'		=>[ 'facebook_login' ],
 		];
 		$fields[] = [
 			'title'         => __( 'Show in native login page','login-me-now' ),
@@ -59,6 +61,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'facebook_native_login', true ),
 			'type'          => 'switch',
 			'tab'           => 'facebook',
+			'if_has'		=>[ 'facebook_login' ],
 		];
 		$fields[] = [
 			'title'         => __( 'User role permission level','login-me-now' ),
@@ -69,6 +72,7 @@ class Settings {
 			'type'          => 'select',
 			'options'		=> $roles_options,
 			'tab'           => 'facebook',
+			'if_has'		=>[ 'facebook_login' ],
 		];
 		$fields[] = [
 			'title'         => __( 'Update existing user name','login-me-now' ),
@@ -78,6 +82,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'facebook_update_existing_user_data', []),
 			'type'          => 'switch',
 			'tab'           => 'facebook',
+			'if_has'		=>[ 'facebook_login' ],
 		];
 
 		return $fields;
