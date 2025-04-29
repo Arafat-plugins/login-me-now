@@ -29,7 +29,7 @@ export default function MainNav() {
 
   navMenus = [
     {
-      name: __("Dashboard", "login-me-now"),
+      name: __("Settings", "login-me-now"),
       slug: lmn_admin.home_slug,
       path: "",
     },
@@ -42,11 +42,6 @@ export default function MainNav() {
       name: __("Browser Extension", "login-me-now"),
       slug: lmn_admin.home_slug,
       path: "browser-extensions",
-    },
-    {
-      name: __("Settings", "login-me-now"),
-      slug: lmn_admin.home_slug,
-      path: "settings",
     },
   ].filter(Boolean);
 

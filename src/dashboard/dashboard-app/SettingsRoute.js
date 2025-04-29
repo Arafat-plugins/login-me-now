@@ -2,7 +2,6 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import Welcome from "@DashboardApp/pages/welcome/Welcome";
 import BrowserExtensions from "./pages/browser-extensions/BrowserExtensions";
-import DashboardModules from "./pages/dashboard-modules/DashboardModules";
 import Settings from './pages/settings/Settings';
 import { useSelector } from "react-redux";
 
@@ -15,7 +14,6 @@ function SettingsRoute() {
 
   const temporaryLoginStatus = navStatus.dmTemporaryLogin;
   const browserExtensionStatus = navStatus.dmBrowserExtension;
-  const SocialLoginStatus = navStatus.dmSocialLogin;
 
   let routePage = <p> Login Me Now Dashboard is Loading... </p>;
 
@@ -39,7 +37,7 @@ function SettingsRoute() {
             break;
 
         default:
-          routePage = <DashboardModules />;
+          routePage = <Settings />;
           break;
       }
     }

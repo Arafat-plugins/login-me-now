@@ -50,7 +50,7 @@ export default function Settings() {
 
     { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations', is_upcoming: true },
     { key: 'directorist', label: __('Directorist', 'login-me-now'), section: 'integrations', is_upcoming: true },
-    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
+    { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations', is_upcoming: true },
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
 
     { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },

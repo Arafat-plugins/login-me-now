@@ -92,10 +92,10 @@ class Menu {
 
 		add_submenu_page(
 			LOGIN_ME_NOW_MENU_SLUG,
-			__( 'Dashboard', 'login-me-now' ),
-			__( 'Dashboard', 'login-me-now' ),
+			__( 'Settings', 'login-me-now' ),
+			__( 'Settings', 'login-me-now' ),
 			LOGIN_ME_NOW_MENU_CAPABILITY,
-			LOGIN_ME_NOW_MENU_SLUG,
+			LOGIN_ME_NOW_MENU_SLUG ,
 			[$this, 'render_admin_dashboard'],
 		);
 
@@ -117,15 +117,6 @@ class Menu {
 			[$this, 'render_admin_dashboard'],
 		);
 
-		add_submenu_page(
-			LOGIN_ME_NOW_MENU_SLUG,
-			__( 'Social Login', 'login-me-now' ),
-			__( 'Social Login', 'login-me-now' ),
-			LOGIN_ME_NOW_MENU_CAPABILITY,
-			LOGIN_ME_NOW_MENU_SLUG . '&path=social-login',
-			[$this, 'render_admin_dashboard'],
-		);
-
 		if ( ! defined( 'LOGIN_ME_NOW_PRO_VERSION' ) ) {
 			add_submenu_page(
 				LOGIN_ME_NOW_MENU_SLUG,
@@ -138,16 +129,7 @@ class Menu {
 
 			// Rewrite the menu item.
 			global $submenu;
-			$submenu[LOGIN_ME_NOW_MENU_SLUG][4][2] = 'https://loginmenow.com/pricing/';
-		} else {
-			add_submenu_page(
-				LOGIN_ME_NOW_MENU_SLUG,
-				__( 'License', 'login-me-now' ),
-				__( 'License', 'login-me-now' ),
-				LOGIN_ME_NOW_MENU_CAPABILITY,
-				LOGIN_ME_NOW_MENU_SLUG . '&path=license',
-				[$this, 'render_admin_dashboard']
-			);
+			$submenu[LOGIN_ME_NOW_MENU_SLUG][3][2] = 'https://loginmenow.com/pricing/';
 		}
 	}
 
