@@ -15,7 +15,7 @@ export default function Settings() {
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
-  const [activeTab, setActiveTab] = useState('google');
+  const [activeTab, setActiveTab] = useState('wp-native-login');
 
   useEffect(() => {
     setLoading(true);
@@ -38,18 +38,18 @@ export default function Settings() {
   }, [form]);
 
   const tabs = [
-    { key: 'wp-admin', label: __('WP Admin', 'login-me-now'), section: 'general', is_upcoming: true },
+    { key: 'wp-native-login', label: __('WP Native Login', 'login-me-now'), section: 'general' },
     { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'general' },
     
-    { key: 'google', label: __('Google', 'login-me-now'), section: 'logins' },
-    { key: 'facebook', label: __('Facebook', 'login-me-now'), section: 'logins' },
-    { key: 'email-magic-link', label: __('Email Magic Link', 'login-me-now'), section: 'logins' },
-    { key: 'phone-otp', label: __('Phone OTP', 'login-me-now'), section: 'logins', is_upcoming: true },
-    // { key: 'twitter-x', label: __('X(Twitter)', 'login-me-now'), section: 'logins', is_upcoming: true },
+    { key: 'google', label: __('Google', 'login-me-now'), section: 'login-providers' },
+    { key: 'facebook', label: __('Facebook', 'login-me-now'), section: 'login-providers' },
+    { key: 'email-magic-link', label: __('Email Magic Link', 'login-me-now'), section: 'login-providers' },
+    { key: 'phone-otp', label: __('Phone OTP', 'login-me-now'), section: 'login-providers', is_upcoming: true },
+    // { key: 'twitter-x', label: __('X(Twitter)', 'login-me-now'), section: 'login-providers', is_upcoming: true },
     
 
-    { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations' },
     { key: 'directorist', label: __('Directorist', 'login-me-now'), section: 'integrations' },
+    { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations' },
     { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
 
@@ -63,7 +63,7 @@ export default function Settings() {
 
   const sections = [
     { key: 'general', label: __('General', 'login-me-now') },
-    { key: 'logins', label: __('Logins', 'login-me-now') },
+    { key: 'login-providers', label: __('Login Providers', 'login-me-now') },
     { key: 'integrations', label: __('Integrations', 'login-me-now') },
     { key: 'more', label: __('More', 'login-me-now') },
   ]

@@ -15,6 +15,41 @@ class Settings {
 	}
 
 	public function register_fields( array $fields ) {
+
+		$fields[] = [
+			'title'         => 'Enable Login Me Now',
+			'description'   => 'Use login features for WordPress native login page.',
+			'id'            => 'wp_native_login_enable',
+			'previous_data' => SettingsRepository::get( 'wp_native_login_enable', true ),
+			'type'          => 'switch',
+			'tab'           => 'wp-native-login',
+		];
+
+		$fields[] = [
+			'title'         => __( 'Select Providers', 'login-me-now' ),
+			'description'   => __( "Choose what login methods you would like to show.", 'login-me-now' ),
+			'id'            => 'wp_native_login_providers',
+			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'siteWide' ),
+			'type'          => 'multi-select',
+			'options'       => [
+				[
+					'value' => 'google',
+					'label' => 'Google',
+				],
+				[
+					'value' => 'facebook',
+					'label' => 'Facebook',
+				],
+				[
+					'value'  => 'email_magic_link',
+					'label'  => 'Email Magic Link',
+					'is_pro' => true,
+				],
+			],
+			'tab'           => 'wp-native-login',
+			'if_has'        => ['google_login', 'google_onetap'],
+		];
+
 		$fields[] = [
 			'title'         => 'Enter your license',
 			'tooltip'       => 'An active license key is needed to unlock all the pro features and receive automatic plugin updates.',
