@@ -70,7 +70,7 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enable one tap login', 'login-me-now' ),
+			'title'         => __( 'Enable One Tap', 'login-me-now' ),
 			'description'   => __( "Enable google one tap login", 'login-me-now' ),
 			'id'            => 'google_onetap',
 			'previous_data' => SettingsRepository::get( 'google_onetap', false ),
@@ -82,7 +82,7 @@ class Settings {
 			'title'         => __( 'Select location', 'login-me-now' ),
 			'description'   => __( "Choose a location.", 'login-me-now' ),
 			'id'            => 'google_onetap_display_location',
-			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'siteWide' ),
+			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'side_wide' ),
 			'type'          => 'select',
 			'options'       => [
 				[
@@ -90,11 +90,11 @@ class Settings {
 					'label' => 'Only on login screen',
 				],
 				[
-					'value' => 'site_wide',
+					'value' => 'side_wide',
 					'label' => 'Site wide',
 				],
 				[
-					'label'  => 'Specific page (pro)',
+					'label'  => 'Specific page (PRO)',
 					'value'  => 'selected_pages',
 					'is_pro' => true,
 				],
@@ -103,14 +103,17 @@ class Settings {
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'         => __( 'Select page', 'login-me-now' ),
-			'description'   => __( "Select a specific page.", 'login-me-now' ),
+			'title'         => __( 'Select pages', 'login-me-now' ),
+			'description'   => __( "Select specific pages.", 'login-me-now' ),
 			'id'            => 'google_pro_selected_pages',
 			'previous_data' => SettingsRepository::get( 'google_pro_selected_pages', [] ),
 			'type'          => 'multi-select',
 			'options'       => $page_options,
 			'tab'           => 'google',
 			'if_has'        => ['google_login', 'google_onetap'], // Have to add another logic for google_onetap_display_location === selected_pages
+			'if_selected'   => [
+				'google_onetap_display_location' => 'selected_pages',
+			],
 			'class'         => 'lmn-settings-separator',
 			'is_pro'        => true,
 		];
@@ -188,7 +191,7 @@ class Settings {
 		$options['google_update_existing_user_data'] = false;
 		$options['google_pro_user_avatar']           = false;
 		$options['google_cancel_on_tap_outside']     = false;
-		$options['google_onetap_display_location']   = 'siteWide';
+		$options['google_onetap_display_location']   = 'side_wide';
 
 		return $options;
 	}

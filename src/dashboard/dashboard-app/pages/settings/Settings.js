@@ -40,6 +40,7 @@ export default function Settings() {
   const tabs = [
     { key: 'wp-native-login', label: __('WP Native Login', 'login-me-now'), section: 'general' },
     { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'general' },
+    { key: 'branden-login', label: __('Branded Login', 'login-me-now'), section: 'general', is_upcoming: true },
     
     { key: 'google', label: __('Google', 'login-me-now'), section: 'login-providers' },
     { key: 'facebook', label: __('Facebook', 'login-me-now'), section: 'login-providers' },
@@ -74,16 +75,29 @@ export default function Settings() {
   const renderField = (field) => {
     if (field.tab !== activeTab) return null;
   
+        // Check if_has (all fields must be truthy)
     if (field.if_has && Array.isArray(field.if_has)) {
-      const hasAllRequiredFields = field.if_has.every((requiredField) => {
-        const currentValue = form.getFieldValue(requiredField);
-        return !!currentValue; // must be truthy
+      const hasAll = field.if_has.every((requiredField) => {
+        const value = form.getFieldValue(requiredField);
+        return !!value;
       });
-    
-      if (!hasAllRequiredFields) {
-        return null; // Hide the field if any required field is missing
+
+      if (!hasAll) {
+        return null;
       }
-    }    
+    }
+
+    // Check if_selected (all fields must match specific value)
+    if (field.if_selected && typeof field.if_selected === 'object') {
+      const allMatch = Object.entries(field.if_selected).every(([key, expectedValue]) => {
+        const value = form.getFieldValue(key);
+        return value === expectedValue;
+      });
+
+      if (!allMatch) {
+        return null;
+      }
+    }
 
     const commonProps = {
       name: field.id,

@@ -47,7 +47,7 @@ class Settings {
 				],
 			],
 			'tab'           => 'wp-native-login',
-			'if_has'        => ['google_login', 'google_onetap'],
+			'if_has'        => ['wp_native_login_enable'],
 		];
 
 		$fields[] = [
@@ -67,7 +67,7 @@ class Settings {
 				],
 			],
 			'tab'           => 'wp-native-login',
-			'if_has'        => ['google_login', 'google_onetap'],
+			'if_has'        => ['wp_native_login_enable'],
 		];
 
 		$fields[] = [
