@@ -26,10 +26,10 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Select Providers', 'login-me-now' ),
+			'title'         => __( 'Select Login Providers', 'login-me-now' ),
 			'description'   => __( "Choose what login methods you would like to show.", 'login-me-now' ),
 			'id'            => 'wp_native_login_providers',
-			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'siteWide' ),
+			'previous_data' => SettingsRepository::get( 'wp_native_login_providers', 'email_magic_link' ),
 			'type'          => 'multi-select',
 			'options'       => [
 				[
@@ -44,6 +44,26 @@ class Settings {
 					'value'  => 'email_magic_link',
 					'label'  => 'Email Magic Link',
 					'is_pro' => true,
+				],
+			],
+			'tab'           => 'wp-native-login',
+			'if_has'        => ['google_login', 'google_onetap'],
+		];
+
+		$fields[] = [
+			'title'         => __( 'Button Position', 'login-me-now' ),
+			'description'   => __( "Choose where to show the login buttons", 'login-me-now' ),
+			'id'            => 'wp_native_login_button_position',
+			'previous_data' => SettingsRepository::get( 'wp_native_login_button_position', 'siteWide' ),
+			'type'          => 'multi-select',
+			'options'       => [
+				[
+					'value' => 'before',
+					'label' => 'Before the login form',
+				],
+				[
+					'value' => 'after',
+					'label' => 'After the login form',
 				],
 			],
 			'tab'           => 'wp-native-login',
