@@ -32,6 +32,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'email_magic_link_title', 'Email Magic Link' ),
 			'type'          => 'text',
 			'tab'           => 'email-magic-link',
+			'if_has'        => ['email_magic_link_enable'],
 		];
 
 		$fields[] = [
@@ -42,6 +43,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'email_magic_link_description', 'Enter your registered email address to receive a quick login link directly in your inbox.' ),
 			'type'          => 'textarea',
 			'tab'           => 'email-magic-link',
+			'if_has'        => ['email_magic_link_enable'],
 		];
 		$fields[] =[
 			'title'			=> 'Change button text',
@@ -50,7 +52,8 @@ class Settings {
 			'placeholder'	=> 'Continue with magic link',
 			'previous_data' => SettingsRepository::get('magic_link_login_button_text', 'Continue with magic link'),
 			'type' 			=> 'text',
-			'tab'			=> 'email-magic-link'
+			'tab'			=> 'email-magic-link',
+			'if_has'        => ['email_magic_link_enable'],
 		];
 
 		$fields[] = [
@@ -61,6 +64,7 @@ class Settings {
 			'previous_data' => SettingsRepository::get( 'email_magic_link_expiration', 300 ),
 			'type'          => 'number',
 			'tab'           => 'email-magic-link',
+			'if_has'        => ['email_magic_link_enable'],
 		];
 
 		return $fields;
