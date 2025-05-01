@@ -28,8 +28,9 @@ class Settings {
 		];
 
 		$fields[] = [
-			'type' => 'separator',
-			'tab'  => 'wp-native-login',
+			'type'   => 'separator',
+			'tab'    => 'woocommerce',
+			'if_has' => ['woocommerce_integration_login_enable'],
 		];
 
 		$fields[] = [
@@ -55,6 +56,12 @@ class Settings {
 			],
 			'tab'           => 'woocommerce',
 			'if_has'        => ['woocommerce_integration_login_enable'],
+		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'woocommerce',
+			'if_has' => ['woocommerce_integration_login_enable'],
 		];
 
 		return $fields;

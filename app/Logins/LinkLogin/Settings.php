@@ -22,6 +22,10 @@ class Settings {
 			'type'          => 'switch',
 			'tab'           => 'delegate-access',
 		];
+		$fields[] = [
+			'type' => 'separator',
+			'tab'  => 'delegate-access',
+		];
 
 		return $fields;
 	}

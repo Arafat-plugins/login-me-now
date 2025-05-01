@@ -28,8 +28,9 @@ class Settings {
 		];
 
 		$fields[] = [
-			'type' => 'separator',
-			'tab'  => 'wp-native-login',
+			'type'   => 'separator',
+			'tab'    => 'easy-digital-downloads',
+			'if_has' => ['easy_digital_downloads_login_enable'],
 		];
 
 		$fields[] = [
@@ -55,6 +56,12 @@ class Settings {
 			],
 			'tab'           => 'easy-digital-downloads',
 			'if_has'        => ['easy_digital_downloads_login_enable'],
+		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'easy-digital-downloads',
+			'if_has' => ['easy_digital_downloads_login_enable'],
 		];
 
 		return $fields;

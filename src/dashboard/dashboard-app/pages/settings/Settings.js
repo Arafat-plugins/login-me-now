@@ -15,7 +15,7 @@ export default function Settings() {
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
-  const [activeTab, setActiveTab] = useState('google');
+  const [activeTab, setActiveTab] = useState('wp-native-login');
 
   useEffect(() => {
     setLoading(true);
@@ -38,9 +38,9 @@ export default function Settings() {
   }, [form]);
 
   const tabs = [
-    { key: 'wp-native-login', label: __('WP Native Login', 'login-me-now'), section: 'general' },
-    { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'general' },
+    { key: 'wp-native-login', label: __('/wp-admin', 'login-me-now'), section: 'general' },
     { key: 'branden-login', label: __('Branded Login', 'login-me-now'), section: 'general', is_upcoming: true },
+    { key: 'license', label: __('License', 'login-me-now'), section: 'general' },
     
     { key: 'google', label: __('Google', 'login-me-now'), section: 'login-providers' },
     { key: 'facebook', label: __('Facebook', 'login-me-now'), section: 'login-providers' },
@@ -48,14 +48,14 @@ export default function Settings() {
     { key: 'phone-otp', label: __('Phone OTP', 'login-me-now'), section: 'login-providers', is_upcoming: true },
     // { key: 'twitter-x', label: __('X(Twitter)', 'login-me-now'), section: 'login-providers', is_upcoming: true },
     
-
+    
     { key: 'directorist', label: __('Directorist', 'login-me-now'), section: 'integrations' },
     { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations' },
     { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
-
+    
+    { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'more' },
     { key: 'activity-logs', label: __('Activity Logs', 'login-me-now'), section: 'more' },
-    { key: 'license', label: __('License', 'login-me-now'), section: 'more' },
     { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },
     { key: 'security', label: __('Security', 'login-me-now'), section: 'more', is_upcoming: true },
     // { key: 'custom-request', label: __('Custom Request', 'login-me-now'), section: 'more', is_upcoming: true  },
@@ -112,7 +112,7 @@ export default function Settings() {
       case 'email':
         return (
           <div className='single-field-item'>
-            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+            <h3 className="form-field-item-heading text-[18px] text-[#666666] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
 
             <Form.Item key={field.id} {...commonProps} className={field.class}>
@@ -123,7 +123,7 @@ export default function Settings() {
       case 'textarea':
         return (
           <div className='single-field-item'>
-             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+             <h3 className="form-field-item-heading text-[18px] text-[#666666] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
              <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
               <TextArea disabled={field.is_pro} placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
@@ -133,7 +133,7 @@ export default function Settings() {
       case 'color':
         return (
           <div className='single-field-item'>
-            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+            <h3 className="form-field-item-heading text-[18px] text-[#666666] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
             <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
 
             <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
@@ -144,7 +144,7 @@ export default function Settings() {
       case 'file':
         return (
             <div className='single-field-item'>
-              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+              <h3 className="form-field-item-heading text-[18px] text-[#666666] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
               <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
               <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
                 <Upload disabled={field.is_pro} beforeUpload={() => false} maxCount={1}>
@@ -158,7 +158,7 @@ export default function Settings() {
       case 'number':
         return (
           <div className='single-field-item'>
-          <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+          <h3 className="form-field-item-heading text-[18px] text-[#666666] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
           <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
           <Form.Item disabled={field.is_pro} key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
@@ -178,7 +178,7 @@ export default function Settings() {
           <div className='single-field-item custom-checkbox-class flex items-center space-x-2'>
 
             <div>
-              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+              <h3 className="form-field-item-heading text-[18px] text-[#666666] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
               <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             </div>
 
@@ -200,7 +200,7 @@ export default function Settings() {
       case 'select':
         return (
           <div className="single-field-item">
-            <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+            <h3 className="form-field-item-heading  text-[18px] text-[#666666] tablet:w-full font-medium">{field.title}</h3>
             <p className="text-sm mb-2 text-gray-500">{field.description}</p>
             
             <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
@@ -218,7 +218,7 @@ export default function Settings() {
       case 'multi-select':
           return (
             <div className="single-field-item">
-              <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
+              <h3 className="form-field-item-heading  text-[18px] text-[#666666] tablet:w-full font-medium">{field.title}</h3>
               <p className="text-sm mb-2 text-gray-500">{field.description}</p>
 
               <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>

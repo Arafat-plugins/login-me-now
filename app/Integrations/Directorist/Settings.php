@@ -28,8 +28,9 @@ class Settings {
 		];
 
 		$fields[] = [
-			'type' => 'separator',
-			'tab'  => 'wp-native-login',
+			'type'   => 'separator',
+			'tab'    => 'directorist',
+			'if_has' => ['directorist_integration_enable'],
 		];
 
 		$fields[] = [
@@ -55,6 +56,12 @@ class Settings {
 			],
 			'tab'           => 'directorist',
 			'if_has'        => ['directorist_integration_enable'],
+		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'directorist',
+			'if_has' => ['directorist_integration_enable'],
 		];
 
 		return $fields;

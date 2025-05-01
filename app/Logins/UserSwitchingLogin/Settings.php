@@ -27,6 +27,11 @@ class Settings {
 			'tab'           => 'delegate-access',
 		];
 
+		$fields[] = [
+			'type' => 'separator',
+			'tab'  => 'delegate-access',
+		];
+
 		return $fields;
 	}
 }

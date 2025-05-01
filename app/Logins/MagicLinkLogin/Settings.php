@@ -24,6 +24,12 @@ class Settings {
 		];
 
 		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'email-magic-link',
+			'if_has' => ['email_magic_link_enable'],
+		];
+
+		$fields[] = [
 			'title'         => 'Title',
 			'tooltip'       => 'Enter the form title',
 			'id'            => 'email_magic_link_title',
@@ -32,6 +38,11 @@ class Settings {
 			'type'          => 'text',
 			'tab'           => 'email-magic-link',
 			'if_has'        => ['email_magic_link_enable'],
+		];
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'email-magic-link',
+			'if_has' => ['email_magic_link_enable'],
 		];
 
 		$fields[] = [
@@ -45,6 +56,12 @@ class Settings {
 			'if_has'        => ['email_magic_link_enable'],
 		];
 		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'email-magic-link',
+			'if_has' => ['email_magic_link_enable'],
+		];
+
+		$fields[] = [
 			'title'         => 'Button Text',
 			'id'            => 'magic_link_login_button_text',
 			'description'   => 'Enter continue with magic link button text',
@@ -53,6 +70,11 @@ class Settings {
 			'type'          => 'text',
 			'tab'           => 'email-magic-link',
 			'if_has'        => ['email_magic_link_enable'],
+		];
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'email-magic-link',
+			'if_has' => ['email_magic_link_enable'],
 		];
 
 		$fields[] = [
@@ -64,6 +86,22 @@ class Settings {
 			'type'          => 'number',
 			'tab'           => 'email-magic-link',
 			'if_has'        => ['email_magic_link_enable'],
+		];
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'email-magic-link',
+			'if_has' => ['email_magic_link_enable'],
+		];
+
+		$fields[] = [
+			'title'         => __( 'Redirection URL', 'login-me-now' ),
+			'description'   => "Redirect after successful login",
+			'id'            => 'email_magic_link_pro_redirect_url',
+			'previous_data' => SettingsRepository::get( 'email_magic_link_pro_redirect_url', '' ),
+			'type'          => 'text',
+			'tab'           => 'email-magic-link',
+			'if_has'        => ['email_magic_link_enable'],
+			'is_pro'        => true,
 		];
 
 		return $fields;
