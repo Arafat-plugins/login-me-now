@@ -21,10 +21,35 @@ class Settings {
 		$fields[] = [
 			'title'         => 'Enable Directorist Integration',
 			'description'   => 'Use login features for Directorist users.',
-			'id'            => 'directorist_integration',
-			'previous_data' => SettingsRepository::get( 'directorist_integration', true ),
+			'id'            => 'directorist_integration_enable',
+			'previous_data' => SettingsRepository::get( 'directorist_integration_enable', true ),
 			'type'          => 'switch',
 			'tab'           => 'directorist',
+		];
+
+		$fields[] = [
+			'title'         => __( 'Select Login Providers', 'login-me-now' ),
+			'description'   => __( "Choose what login methods you would like to show.", 'login-me-now' ),
+			'id'            => 'directorist_integration_login_providers',
+			'previous_data' => SettingsRepository::get( 'directorist_integration_login_providers', 'email_magic_link' ),
+			'type'          => 'multi-select',
+			'options'       => [
+				[
+					'value' => 'google',
+					'label' => 'Google',
+				],
+				[
+					'value' => 'facebook',
+					'label' => 'Facebook',
+				],
+				[
+					'value'  => 'email_magic_link',
+					'label'  => 'Email Magic Link',
+					'is_pro' => true,
+				],
+			],
+			'tab'           => 'directorist',
+			'if_has'        => ['directorist_integration_enable'],
 		];
 
 		return $fields;

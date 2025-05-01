@@ -119,9 +119,6 @@ class SettingsRepository {
 	}
 
 	public static function save( string $key, $value ) {
-
-		error_log( ' $key : ' . print_r( $value, true ) );
-
 		self::$settings       = get_option( self::$option_name, [] );
 		self::$settings[$key] = $value;
 		update_option( self::$option_name, self::$settings );

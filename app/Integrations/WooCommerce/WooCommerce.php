@@ -8,18 +8,18 @@
 namespace LoginMeNow\Integrations\WooCommerce;
 
 use LoginMeNow\Common\IntegrationBase;
-use LoginMeNow\Providers\LoginFormsServiceProvider;
+use LoginMeNow\Repositories\LoginProvidersRepository;
 use LoginMeNow\Repositories\SettingsRepository;
 
 class WooCommerce extends IntegrationBase {
 	public function boot(): void {
 		Settings::init();
 
-		if ( SettingsRepository::get( 'google_native_login', true ) ) {
+		if ( ! $this->is_enabled() ) {
 			return;
 		}
 
-		add_action( 'woocommerce_login_form_start', [$this, 'add_form'] );
+		add_action( 'woocommerce_login_form_start', [$this, 'woocommerce_integration'] );
 
 		if ( class_exists( 'WC_Emails' ) ) {
 			remove_action( 'register_new_user', 'wp_send_new_user_notifications' );
@@ -29,8 +29,12 @@ class WooCommerce extends IntegrationBase {
 		}
 	}
 
-	public function add_form() {
-		( new LoginFormsServiceProvider() )->login_buttons();
+	public function woocommerce_integration() {
+		$position  = 'after';
+		$providers = SettingsRepository::get( 'woocommerce_integration_login_providers', [] );
+
+		$repository = new LoginProvidersRepository();
+		$repository->get_provider_buttons_html( false, $providers, $position );
 	}
 
 	/**
@@ -47,5 +51,9 @@ class WooCommerce extends IntegrationBase {
 			// WooCommerce automatically handles password generation or uses the provided one
 			$new_account_email->trigger( $user_id, '' ); // Empty password argument
 		}
+	}
+
+	public function is_enabled(): bool {
+		return (bool) SettingsRepository::get( 'woocommerce_integration_enable', true );
 	}
 }

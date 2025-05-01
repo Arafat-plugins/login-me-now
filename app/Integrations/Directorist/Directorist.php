@@ -8,22 +8,30 @@
 namespace LoginMeNow\Integrations\Directorist;
 
 use LoginMeNow\Common\IntegrationBase;
-use LoginMeNow\Providers\LoginFormsServiceProvider;
+use LoginMeNow\Repositories\LoginProvidersRepository;
 use LoginMeNow\Repositories\SettingsRepository;
 
 class Directorist extends IntegrationBase {
 	public function boot(): void {
 		Settings::init();
 
-		if ( SettingsRepository::get( 'easy_digital_downloads_integration', true ) ) {
+		if ( ! $this->is_enabled() ) {
 			return;
 		}
 
-		add_action( 'atbdp_before_login_form_end', [$this, 'add_form'] );
-		add_action( 'atbdp_before_user_registration_submit', [$this, 'add_form'] );
+		add_action( 'atbdp_before_login_form_end', [$this, 'directorist_integration'] );
+		add_action( 'atbdp_before_user_registration_submit', [$this, 'directorist_integration'] );
 	}
 
-	public function add_form() {
-		( new LoginFormsServiceProvider() )->login_buttons( false, true, false );
+	public function directorist_integration() {
+		$position  = 'before';
+		$providers = SettingsRepository::get( 'directorist_integration_login_providers', [] );
+
+		$repository = new LoginProvidersRepository();
+		$repository->get_provider_buttons_html( false, $providers, $position );
+	}
+
+	public function is_enabled(): bool {
+		return (bool) SettingsRepository::get( 'directorist_integration_enable', true );
 	}
 }

@@ -51,28 +51,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Button Position', 'login-me-now' ),
-			'description'   => __( "Choose where to show the login buttons", 'login-me-now' ),
-			'id'            => 'wp_native_login_button_position',
-			'previous_data' => SettingsRepository::get( 'wp_native_login_button_position', 'after' ),
-			'type'          => 'select',
-			'options'       => [
-				[
-					'value' => 'before',
-					'label' => 'Before the login form',
-				],
-				[
-					'value' => 'after',
-					'label' => 'After the login form',
-				],
-			],
-			'tab'           => 'wp-native-login',
-			'if_has'        => ['wp_native_login_enable'],
-		];
-
-		$fields[] = [
 			'title'         => 'Enter your license key',
-			'description'       => "An active license key is needed to unlock all the pro features and receive automatic plugin updates. Don't have a license key? <a href='https://pluginly.com/login-me-now-pro/' target='_blank'>Get it here</a>",
+			'description'   => "An active license key is needed to unlock all the pro features and receive automatic plugin updates. Don't have a license key? <a href='https://pluginly.com/login-me-now-pro/' target='_blank'>Get it here</a>",
 			'id'            => 'lmn_pro_lic',
 			'previous_data' => SettingsRepository::get( 'lmn_pro_lic', '' ),
 			'type'          => 'text',

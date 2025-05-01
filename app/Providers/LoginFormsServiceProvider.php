@@ -43,7 +43,7 @@ class LoginFormsServiceProvider extends ProviderBase {
 			return;
 		}
 
-		$position  = SettingsRepository::get( 'wp_native_login_button_position', 'after' );
+		$position  = 'after';
 		$providers = SettingsRepository::get( 'wp_native_login_providers', [] );
 
 		$repository = new LoginProvidersRepository();

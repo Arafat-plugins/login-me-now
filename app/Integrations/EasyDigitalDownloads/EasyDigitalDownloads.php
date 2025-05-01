@@ -8,21 +8,29 @@
 namespace LoginMeNow\Integrations\EasyDigitalDownloads;
 
 use LoginMeNow\Common\IntegrationBase;
-use LoginMeNow\Providers\LoginFormsServiceProvider;
+use LoginMeNow\Repositories\LoginProvidersRepository;
 use LoginMeNow\Repositories\SettingsRepository;
 
 class EasyDigitalDownloads extends IntegrationBase {
 	public function boot(): void {
 		Settings::init();
 
-		if ( SettingsRepository::get( 'easy_digital_downloads_integration', true ) ) {
+		if ( ! $this->is_enabled() ) {
 			return;
 		}
 
-		add_action( 'edd_login_fields_after', [$this, 'add_form'] );
+		add_action( 'edd_login_fields_after', [$this, 'easy_digital_downloads_integration'] );
 	}
 
-	public function add_form() {
-		( new LoginFormsServiceProvider() )->login_buttons( false, true, false );
+	public function easy_digital_downloads_integration() {
+		$position  = 'after';
+		$providers = SettingsRepository::get( 'easy_digital_downloads_integration_login_providers', [] );
+
+		$repository = new LoginProvidersRepository();
+		$repository->get_provider_buttons_html( false, $providers, $position );
+	}
+
+	public function is_enabled(): bool {
+		return (bool) SettingsRepository::get( 'easy_digital_downloads_login_enable', true );
 	}
 }
