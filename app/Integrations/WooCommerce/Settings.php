@@ -28,6 +28,11 @@ class Settings {
 		];
 
 		$fields[] = [
+			'type' => 'separator',
+			'tab'  => 'wp-native-login',
+		];
+
+		$fields[] = [
 			'title'         => __( 'Select Login Providers', 'login-me-now' ),
 			'description'   => __( "Choose what login methods you would like to show.", 'login-me-now' ),
 			'id'            => 'woocommerce_integration_login_providers',

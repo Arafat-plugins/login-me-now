@@ -15,7 +15,7 @@ export default function Settings() {
   const [fields, setFields] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form] = Form.useForm();
-  const [activeTab, setActiveTab] = useState('wp-native-login');
+  const [activeTab, setActiveTab] = useState('google');
 
   useEffect(() => {
     setLoading(true);
@@ -113,7 +113,7 @@ export default function Settings() {
         return (
           <div className='single-field-item'>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+            <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
 
             <Form.Item key={field.id} {...commonProps} className={field.class}>
               <Input disabled={field.is_pro} placeholder={field.placeholder} className="border rounded-lg px-3 py-2 block h-[50px] !p-3 !border-slate-200" />
@@ -124,42 +124,42 @@ export default function Settings() {
         return (
           <div className='single-field-item'>
              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-             <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-            <TextArea disabled={field.is_pro} placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
-          </Form.Item>
+             <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+              <TextArea disabled={field.is_pro} placeholder={field.placeholder} rows={4} className="block h-[50px] !p-3 !border-slate-200" />
+            </Form.Item>
           </div>
         );
       case 'color':
         return (
           <div className='single-field-item'>
             <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+            <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
 
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-            <Input disabled={field.is_pro} type="color" className="w-16 h-10 border rounded-lg" />
-          </Form.Item>
+            <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+              <Input disabled={field.is_pro} type="color" className="w-16 h-10 border rounded-lg" />
+            </Form.Item>
           </div>
         );
       case 'file':
         return (
             <div className='single-field-item'>
-            <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-            <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-          <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
-            <Upload disabled={field.is_pro} beforeUpload={() => false} maxCount={1}>
-              <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
-                {__('Upload File', 'login-me-now')}
-              </Button>
-            </Upload>
-          </Form.Item>
+              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+              <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+              <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
+                <Upload disabled={field.is_pro} beforeUpload={() => false} maxCount={1}>
+                  <Button icon={<UploadOutlined />} className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                    {__('Upload File', 'login-me-now')}
+                  </Button>
+                </Upload>
+              </Form.Item>
           </div>
         );
       case 'number':
         return (
           <div className='single-field-item'>
           <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-          <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
+          <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
           <Form.Item disabled={field.is_pro} key={field.id} {...commonProps} tooltip={field.tooltip} className={field.class}>
             <InputNumber placeholder={field.placeholder} className="w-full border rounded-lg px-3 py-2" />
           </Form.Item>
@@ -173,35 +173,35 @@ export default function Settings() {
             </div>
           </Form.Item>
         );
-        case 'switch':
-          return (
-            <div className='custom-checkbox-class flex items-center space-x-2'>
+      case 'switch':
+        return (
+          <div className='single-field-item custom-checkbox-class flex items-center space-x-2'>
 
-              <div>
-               <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
-                <p className="text-sm text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
-              </div>
-
-              <Form.Item
-                key={field.id}
-                name={field.id}
-                valuePropName="checked"
-                initialValue={false}  // Ensure there's an initial value
-                rules={[
-                  { required: false, message: `${field.title} is required.` },
-                ]}
-                tooltip={field.tooltip}
-                className={field.class}
-              >
-              <Switch disabled={field.is_pro} />
-              </Form.Item>
+            <div>
+              <h3 className="form-field-item-heading text-[18px] text-[#000000] tablet:w-full font-medium"dangerouslySetInnerHTML={{ __html: field.title }}></h3>
+              <p className="text-sm mb-2 text-gray-500"dangerouslySetInnerHTML={{ __html: field.description }}></p>
             </div>
-          ); 
+
+            <Form.Item
+              key={field.id}
+              name={field.id}
+              valuePropName="checked"
+              initialValue={false}  // Ensure there's an initial value
+              rules={[
+                { required: false, message: `${field.title} is required.` },
+              ]}
+              tooltip={field.tooltip}
+              className={field.class}
+            >
+            <Switch disabled={field.is_pro} />
+            </Form.Item>
+          </div>
+        ); 
       case 'select':
         return (
-          <div className={field.class}>
+          <div className="single-field-item">
             <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-            <span className="text-sm text-gray-500">{field.description}</span>
+            <p className="text-sm mb-2 text-gray-500">{field.description}</p>
             
             <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
               <Select disabled={field.is_pro} placeholder={field.placeholder} className="w-full">
@@ -217,9 +217,9 @@ export default function Settings() {
 
       case 'multi-select':
           return (
-            <div className={field.class}>
+            <div className="single-field-item">
               <h3 className="form-field-item-heading  text-[18px] text-[#000000] tablet:w-full font-medium">{field.title}</h3>
-              <span className="text-sm text-gray-500">{field.description}</span>
+              <p className="text-sm mb-2 text-gray-500">{field.description}</p>
 
               <Form.Item key={field.id} {...commonProps} tooltip={field.tooltip}>
                 <Select
@@ -235,6 +235,11 @@ export default function Settings() {
               </Form.Item>
             </div>
           );
+      
+      case 'separator':
+        return (
+          <div className="login-me-now-separator"></div>
+        );
       default:
         return null;
     }

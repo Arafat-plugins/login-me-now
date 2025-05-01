@@ -45,6 +45,12 @@ class Settings {
 		];
 
 		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login'],
+		];
+
+		$fields[] = [
 			'title'         => __( 'Enter <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Google Client ID</a>', 'login-me-now' ),
 			'description'   => __( "Enter your google Client ID here.", 'login-me-now' ),
 			'id'            => 'google_client_id',
@@ -54,6 +60,13 @@ class Settings {
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
 		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login'],
+		];
+
 		$fields[] = [
 			'title'         => __( 'Enter Google Client Secret', 'login-me-now' ),
 			'description'   => __( "Enter your Client Secret key here.", 'login-me-now' ),
@@ -67,6 +80,12 @@ class Settings {
 		];
 
 		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login'],
+		];
+
+		$fields[] = [
 			'title'         => __( 'Enable One Tap', 'login-me-now' ),
 			'description'   => __( "Enable google one tap login", 'login-me-now' ),
 			'id'            => 'google_onetap',
@@ -75,6 +94,13 @@ class Settings {
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
 		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login', 'google_onetap'],
+		];
+
 		$fields[] = [
 			'title'         => __( 'Select location', 'login-me-now' ),
 			'description'   => __( "Choose a location.", 'login-me-now' ),
@@ -123,6 +149,13 @@ class Settings {
 			'type'          => 'switch',
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login', 'google_onetap'],
+		];
+
 		$fields[] = [
 			'title'         => __( 'User Role Permission Level', 'login-me-now' ),
 			'description'   => __( "Select a permission option for users.", 'login-me-now' ),
@@ -135,6 +168,12 @@ class Settings {
 			'is_pro'        => true,
 		];
 		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login'],
+		];
+
+		$fields[] = [
 			'title'         => __( 'Update existing user name', 'login-me-now' ),
 			'description'   => __( "Automatically retrieve the existing user first, last, nick & display name from google account upon login using gmail ", 'login-me-now' ),
 			'id'            => 'google_update_existing_user_data',
@@ -145,7 +184,13 @@ class Settings {
 			'is_pro'        => true,
 		];
 		$fields[] = [
-			'title'         => __( 'Add user profile picture', 'login-me-now' ),
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login'],
+		];
+
+		$fields[] = [
+			'title'         => __( 'Add User Profile Picture', 'login-me-now' ),
 			'description'   => __( "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail", 'login-me-now' ),
 			'id'            => 'google_pro_user_avatar',
 			'previous_data' => SettingsRepository::get( 'google_pro_user_avatar', false ),
@@ -155,8 +200,14 @@ class Settings {
 			'is_pro'        => true,
 		];
 		$fields[] = [
-			'title'         => __( 'Redirect after successful login and registration', 'login-me-now' ),
-			// 'description'   => "Automatically retrieve the profile picture as avatar from users' google account upon login or register using gmail",
+			'type'   => 'separator',
+			'tab'    => 'google',
+			'if_has' => ['google_login'],
+		];
+
+		$fields[] = [
+			'title'         => __( 'Redirection URL', 'login-me-now' ),
+			'description'   => "Redirect after successful login and registration",
 			'id'            => 'google_pro_redirect_url',
 			'previous_data' => SettingsRepository::get( 'google_pro_redirect_url', '' ),
 			'type'          => 'text',
