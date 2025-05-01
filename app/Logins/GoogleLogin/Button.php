@@ -1,24 +1,24 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.5.0
- * @version 1.6.2
+ * @since   1.5
+ * @version 1.9
  */
 
 namespace LoginMeNow\Logins\GoogleLogin;
 
-use LoginMeNow\Common\LoginButtonBase;
+use LoginMeNow\Common\LoginProviderButtonBase;
 use LoginMeNow\Repositories\SettingsRepository;
 use LoginMeNow\Utils\User;
 
-class Button extends LoginButtonBase {
+class Button extends LoginProviderButtonBase {
 
 	public function shortcodes(): void {
-		add_shortcode( 'login_me_now_google_button', [$this, 'button'] );
+		add_shortcode( 'login_me_now_google_button', [$this, 'get_button'] );
 	}
 
-	public function button(): string {
-		if ( ! GoogleLogin::show() ) {
+	public function get_button(): string {
+		if ( ! $this->is_enabled() ) {
 			return '';
 		}
 
@@ -32,9 +32,7 @@ class Button extends LoginButtonBase {
 		return $this->html();
 	}
 
-	public function html( int $width = 270 ): string {
-		$width = apply_filters( 'login_me_now_google_button_width', $width );
-
+	public function html(): string {
 		ob_start();
 		include __DIR__ . '/Views/Button.php';
 		$html = ob_get_clean();
@@ -42,7 +40,15 @@ class Button extends LoginButtonBase {
 		return $html;
 	}
 
-	public function native_login(): bool {
-		return SettingsRepository::get( 'google_native_login', true );
+	public function is_enabled(): bool {
+		$enable        = SettingsRepository::get( 'google_login', false );
+		$client_id     = SettingsRepository::get( 'google_client_id', '' );
+		$client_secret = SettingsRepository::get( 'google_client_secret', '' );
+
+		if ( $enable && $client_id && $client_secret ) {
+			return true;
+		}
+
+		return false;
 	}
 }

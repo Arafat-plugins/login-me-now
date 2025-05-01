@@ -55,7 +55,7 @@ class Settings {
 			'description'   => __( "Choose where to show the login buttons", 'login-me-now' ),
 			'id'            => 'wp_native_login_button_position',
 			'previous_data' => SettingsRepository::get( 'wp_native_login_button_position', 'after' ),
-			'type'          => 'multi-select',
+			'type'          => 'select',
 			'options'       => [
 				[
 					'value' => 'before',

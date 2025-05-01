@@ -1,156 +1,114 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.6.0
- * @version 1.6.0
+ * @since   1.6
+ * @version 1.9
  */
 
 namespace LoginMeNow\Providers;
 
 use LoginMeNow\Common\ProviderBase;
-use LoginMeNow\Logins\FacebookLogin\Button as FacebookButton;
-use LoginMeNow\Logins\FacebookLogin\FacebookLogin;
-use LoginMeNow\Logins\GoogleLogin\Button as GoogleButton;
-use LoginMeNow\Logins\GoogleLogin\GoogleLogin;
-use LoginMeNow\Logins\MagicLinkLogin\Button as MagicLinkLoginButton;
-use LoginMeNow\Logins\MagicLinkLogin\MagicLinkLogin;
+use LoginMeNow\Repositories\LoginProvidersRepository;
+use LoginMeNow\Repositories\SettingsRepository;
 
 class LoginFormsServiceProvider extends ProviderBase {
-
 	use \LoginMeNow\Common\Hookable;
 
 	public function boot() {
-		$this->action( 'login_footer', [$this, 'wp_login_script'], 50 );
+		// Load scripts and styles
+		$this->action( 'login_footer', [$this, 'enqueue_login_script'], 50 );
 
-		$this->action( 'login_form', [$this, 'login_buttons'] );
-		$this->action( 'register_form', [$this, 'login_buttons'] );
-		$this->filter( 'login_form_top', [$this, 'login_buttons_filter'] );
+		// Display login buttons on login/register forms
+		$this->action( 'login_form', [$this, 'render_login_buttons'] );
+		$this->action( 'register_form', [$this, 'render_login_buttons'] );
 
-		$this->action( 'login_me_now_popup_authenticate_redirection', [$this, 'login_me_now_popup_authenticate_redirection'] );
+		// Optional placement at top
+		// $this->filter( 'login_form_top', [$this, 'render_login_buttons_filtered'] );
 
+		// Popup redirect after auth
+		$this->action( 'login_me_now_popup_authenticate_redirection', [$this, 'handle_popup_redirect'] );
 	}
 
-	public function login_buttons_filter() {
-		return $this->login_buttons( true );
-	}
-
-	public function login_buttons( bool $return = false, $before = false, $after = true ) {
-		if ( ! $this->show() ) {
-			return;
-		}
-
-		$buttons = $this->buttons();
-
-		ob_start();
-		include_once LOGIN_ME_NOW_TEMPLATE_PATH . '/login-form.php';
-		$html = ob_get_clean();
-
-		if ( $return ) {
-			return $html;
-		}
-
-		echo $html;
-	}
-
-	public function buttons(): array {
-		$array          = [];
-		$google         = new GoogleButton();
-		$facebook       = new FacebookButton();
-		$emailMagicLink = new MagicLinkLoginButton();
-
-		if ( $google->native_login() ) {
-			$array['google'] = $google;
-		}
-
-		if ( $facebook->native_login() ) {
-			$array['facebook'] = $facebook;
-		}
-
-		if ( $emailMagicLink->native_login() ) {
-			$array['email_magic_link'] = $emailMagicLink;
-		}
-
-		return $array;
-	}
-
-	public function show(): bool {
-		if (
-			FacebookLogin::show_on_native_login()
-			|| GoogleLogin::show_on_native_login()
-			|| MagicLinkLogin::show_on_native_login()
-		) {
-			return true;
-		}
-
-		return false;
-	}
-
-	public function wp_login_script() {?>
+	public function enqueue_login_script() {
+		?>
 		<script type="text/javascript">
-			jQuery("#wp-login-login-me-now-buttons").prependTo("#loginform");
+			jQuery(function($) {
+				$("#wp-login-login-me-now-buttons").prependTo("#loginform");
+			});
 		</script>
 	<?php }
 
-	public function login_me_now_popup_authenticate_redirection( string $redirect_uri ) {
+	public function render_login_buttons() {
+		if ( ! $this->is_enabled() ) {
+			return;
+		}
+
+		$position  = SettingsRepository::get( 'wp_native_login_button_position', 'after' );
+		$providers = SettingsRepository::get( 'wp_native_login_providers', [] );
+
+		$repository = new LoginProvidersRepository();
+		$repository->get_provider_buttons_html( false, $providers, $position );
+	}
+
+	public function render_login_buttons_filtered() {
+		$repository = new LoginProvidersRepository();
+
+		return $repository->get_provider_buttons_html( true, SettingsRepository::get( 'wp_native_login_providers', [] ) );
+	}
+
+	public function handle_popup_redirect( string $redirect_uri ) {
+		$safe_redirect = esc_url_raw( $redirect_uri );
 		?>
 		<!doctype html>
-		<html lang=en>
+		<html lang="en">
 		<head>
-			<meta charset=utf-8>
-			<title><?php _e( 'Authentication successful', 'login-me-now' ); ?></title>
+			<meta charset="utf-8">
+			<title><?php esc_html_e( 'Authentication successful', 'login-me-now' ); ?></title>
 			<script type="text/javascript">
-				try {
-					if (window.opener !== null && window.opener !== window) {
-						var sameOrigin = true;
-						try {
-							var currentOrigin = window.location.protocol + '//' + window.location.hostname;
-							if (window.opener.location.href.substring(0, currentOrigin.length) !== currentOrigin) {
-								sameOrigin = false;
-							}
+				(function() {
+					try {
+						let opener = window.opener;
+						let sameOrigin = false;
 
+						try {
+							const origin = location.protocol + '//' + location.hostname;
+							sameOrigin = opener && opener.location.href.startsWith(origin);
 						} catch (e) {
-							/**
-							 * Blocked cross origin
-							 */
 							sameOrigin = false;
 						}
-						if (sameOrigin) {
-							var url = <?php echo wp_json_encode( $redirect_uri ); ?>;
-							if (typeof window.opener.lmnRedirect === 'function') {
-								window.opener.lmnRedirect(url);
+
+						const redirect = <?php echo wp_json_encode( $safe_redirect ); ?>;
+
+						if (sameOrigin && opener) {
+							if (typeof opener.lmnRedirect === 'function') {
+								opener.lmnRedirect(redirect);
 							} else {
-								window.opener.location = url;
+								opener.location = redirect;
 							}
 							window.close();
+						} else if (opener === null && typeof BroadcastChannel === "function") {
+							const channel = new BroadcastChannel('lmn_login_broadcast_channel');
+							channel.postMessage({ action: 'redirect', href: redirect });
+							channel.close();
+							window.close();
 						} else {
-							window.location.reload(true);
+							location.reload(true);
 						}
-					} else {
-						if (window.opener === null) {
-							/**
-							 * Cross-Origin-Opener-Policy blocked the access to the opener
-							 */
-							if (typeof BroadcastChannel === "function") {
-								const _lmnLoginBroadCastChannel = new BroadcastChannel('lmn_login_broadcast_channel');
-								_lmnLoginBroadCastChannel.postMessage({
-									action: 'redirect',
-									href:<?php echo wp_json_encode( $redirect_uri ); ?>});
-								_lmnLoginBroadCastChannel.close();
-								window.close();
-							} else {
-								window.location.reload(true);
-							}
-						} else {
-							window.location.reload(true);
-						}
+					} catch (e) {
+						location.reload(true);
 					}
-				} catch (e) {
-					window.location.reload(true);
-				}
+				})();
 			</script>
 		</head>
-		<body><a href="<?php echo esc_url( $redirect_uri ); ?>"><?php echo 'Continue...'; ?></a></body>
+		<body>
+			<a href="<?php echo esc_url( $safe_redirect ); ?>"><?php esc_html_e( 'Continue...', 'login-me-now' ); ?></a>
+		</body>
 		</html>
-	<?php exit;
+		<?php
+exit;
+	}
+
+	public function is_enabled(): bool {
+		return (bool) SettingsRepository::get( 'wp_native_login_enable', true );
 	}
 }
