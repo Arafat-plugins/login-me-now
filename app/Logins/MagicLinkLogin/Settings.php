@@ -2,7 +2,7 @@
 /**
  * @author  Pluginly
  * @since   1.8
- * @version 1.8
+ * @version 1.9
  */
 
 namespace LoginMeNow\Logins\MagicLinkLogin;
@@ -16,13 +16,12 @@ class Settings {
 
 	public function register_fields( array $fields ) {
 		$fields[] = [
-			'title'         => 'Enable magic link login',
+			'title'         => 'Enable Magic Link Login',
 			'id'            => 'email_magic_link_enable',
-			'previous_data' => SettingsRepository::get( 'email_magic_link_enable', false ),
+			'previous_data' => SettingsRepository::get( 'email_magic_link_enable', true ),
 			'type'          => 'switch',
 			'tab'           => 'email-magic-link',
 		];
-
 
 		$fields[] = [
 			'title'         => 'Title',
@@ -37,7 +36,7 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Description',
-			'tooltip'       => 'Enter the form description',
+			'description'   => 'Enter the form description',
 			'id'            => 'email_magic_link_description',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_description', 'Enter your registered email address to receive a quick login link directly in your inbox.' ),
@@ -45,20 +44,20 @@ class Settings {
 			'tab'           => 'email-magic-link',
 			'if_has'        => ['email_magic_link_enable'],
 		];
-		$fields[] =[
-			'title'			=> 'Change button text',
-			'id'			=> 'magic_link_login_button_text',
-			'tooltip'		=> 'Enter magic button text',
-			'placeholder'	=> 'Continue with magic link',
-			'previous_data' => SettingsRepository::get('magic_link_login_button_text', 'Continue with magic link'),
-			'type' 			=> 'text',
-			'tab'			=> 'email-magic-link',
+		$fields[] = [
+			'title'         => 'Button Text',
+			'id'            => 'magic_link_login_button_text',
+			'description'   => 'Enter continue with magic link button text',
+			'placeholder'   => 'Continue with magic link',
+			'previous_data' => SettingsRepository::get( 'magic_link_login_button_text', 'Continue with magic link' ),
+			'type'          => 'text',
+			'tab'           => 'email-magic-link',
 			'if_has'        => ['email_magic_link_enable'],
 		];
 
 		$fields[] = [
 			'title'         => 'Expiration',
-			'tooltip'       => 'Enter the expiration of link in seconds',
+			'description'   => 'Enter the expiration of link in seconds',
 			'id'            => 'email_magic_link_expiration',
 			'placeholder'   => 'e.g., 300',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_expiration', 300 ),

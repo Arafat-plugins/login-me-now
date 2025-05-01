@@ -1,8 +1,8 @@
 <?php
 /**
  * @author 	Pluginly
- * @since	1.6.0
- * @version 1.7.2
+ * @since	1.9
+ * @version 1.9
  */
 
 namespace LoginMeNow\Integrations\Directorist;

@@ -1,8 +1,8 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.0.0
- * @version 1.6.2
+ * @since   1.0
+ * @version 1.9
  */
 
 namespace LoginMeNow\Admin;
@@ -54,7 +54,7 @@ class Settings {
 			'title'         => __( 'Button Position', 'login-me-now' ),
 			'description'   => __( "Choose where to show the login buttons", 'login-me-now' ),
 			'id'            => 'wp_native_login_button_position',
-			'previous_data' => SettingsRepository::get( 'wp_native_login_button_position', 'siteWide' ),
+			'previous_data' => SettingsRepository::get( 'wp_native_login_button_position', 'after' ),
 			'type'          => 'multi-select',
 			'options'       => [
 				[

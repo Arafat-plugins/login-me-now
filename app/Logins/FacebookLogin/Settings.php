@@ -20,7 +20,6 @@ class Settings {
 		$roles_options = [];
 
 		foreach ( Helper::get_user_roles() as $key => $role ) {
-
 			$roles_options[] = [
 				'value' => $key,
 				'label' => $role,
@@ -28,8 +27,7 @@ class Settings {
 		}
 
 		$fields[] = [
-			'title'         => __( 'Enable facebook login', 'login-me-now' ),
-			'tooltip'       => __( 'Enable facebook login', 'login-me-now' ),
+			'title'         => __( 'Enable Facebook Login', 'login-me-now' ),
 			'id'            => 'facebook_login',
 			'previous_data' => SettingsRepository::get( 'facebook_login', false ),
 			'type'          => 'switch',
@@ -37,7 +35,6 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => __( 'Enter <a href="https://developers.facebook.com/apps/">facebook App ID</a>', 'login-me-now' ),
-			'tooltip'       => __( 'Enable facebook login', 'login-me-now' ),
 			'id'            => 'facebook_app_id',
 			'previous_data' => SettingsRepository::get( 'facebook_app_id', '' ),
 			'type'          => 'text',
@@ -46,7 +43,6 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => __( 'Enter Facebook App Secret', 'login-me-now' ),
-			'tooltip'       => __( 'Enter Facebook App Secret', 'login-me-now' ),
 			'id'            => 'facebook_app_secret',
 			'previous_data' => SettingsRepository::get( 'facebook_app_secret', '' ),
 			'type'          => 'text',
@@ -55,10 +51,9 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => __( 'User role permission level', 'login-me-now' ),
-			'tooltip'       => __( 'Show in native login page', 'login-me-now' ),
 			'description'   => __( 'Select the role that will be assigned to new users who sign up', 'login-me-now' ),
 			'id'            => 'facebook_pro_default_user_role',
-			'previous_data' => SettingsRepository::get( 'facebook_pro_default_user_role', [] ),
+			'previous_data' => SettingsRepository::get( 'facebook_pro_default_user_role', '' ),
 			'type'          => 'select',
 			'options'       => $roles_options,
 			'tab'           => 'facebook',
@@ -67,10 +62,9 @@ class Settings {
 		];
 		$fields[] = [
 			'title'         => __( 'Update existing user name', 'login-me-now' ),
-			'tooltip'       => __( 'Update existing user name', 'login-me-now' ),
 			'description'   => __( 'Automatically retrieve the existing user first, last, nick & display name from facebook account upon login using facebook', 'login-me-now' ),
 			'id'            => 'facebook_update_existing_user_data',
-			'previous_data' => SettingsRepository::get( 'facebook_update_existing_user_data', [] ),
+			'previous_data' => SettingsRepository::get( 'facebook_update_existing_user_data', false ),
 			'type'          => 'switch',
 			'tab'           => 'facebook',
 			'if_has'        => ['facebook_login'],

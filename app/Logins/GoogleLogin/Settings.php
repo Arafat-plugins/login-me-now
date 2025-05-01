@@ -1,8 +1,8 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.7.0
- * @version 1.7.0
+ * @since   1.7
+ * @version 1.9
  */
 
 namespace LoginMeNow\Logins\GoogleLogin;
@@ -37,8 +37,7 @@ class Settings {
 		}
 
 		$fields[] = [
-			'title'         => __( 'Enable google login', 'login-me-now' ),
-			'description'   => __( "Enable google login", 'login-me-now' ),
+			'title'         => __( 'Enable Google Login', 'login-me-now' ),
 			'id'            => 'google_login',
 			'previous_data' => SettingsRepository::get( 'google_login', false ),
 			'type'          => 'switch',
@@ -71,7 +70,7 @@ class Settings {
 			'title'         => __( 'Enable One Tap', 'login-me-now' ),
 			'description'   => __( "Enable google one tap login", 'login-me-now' ),
 			'id'            => 'google_onetap',
-			'previous_data' => SettingsRepository::get( 'google_onetap', false ),
+			'previous_data' => SettingsRepository::get( 'google_onetap', true ),
 			'type'          => 'switch',
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
@@ -108,7 +107,7 @@ class Settings {
 			'type'          => 'multi-select',
 			'options'       => $page_options,
 			'tab'           => 'google',
-			'if_has'        => ['google_login', 'google_onetap'], // Have to add another logic for google_onetap_display_location === selected_pages
+			'if_has'        => ['google_login', 'google_onetap'],
 			'if_selected'   => [
 				'google_onetap_display_location' => 'selected_pages',
 			],

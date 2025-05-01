@@ -1,8 +1,8 @@
 <?php
 /**
  * @author 	Pluginly
- * @since	1.7.0
- * @version 1.7.0
+ * @since	1.7
+ * @version 1.9
  */
 
 namespace LoginMeNow\Integrations\EasyDigitalDownloads;

@@ -15,10 +15,10 @@ class Settings {
 	public function register_fields( array $fields ) {
 
 		$fields[] = [
-			'title'         => __( 'Link Login', 'login-me-now' ),
-			'description'   => __( "If frequent logins to the dashboard are necessary throughout the day, the browser extension comes in handy.It just takes 1 click to login to dashboard.", 'login-me-now' ),
+			'title'         => __( 'Enable Temporary Login', 'login-me-now' ),
+			'description'   => __( "Generate a tokenized link to create a temporary login. By opening the link, anyone can log in without requiring a password.", 'login-me-now' ),
 			'id'            => 'temporary_login',
-			'previous_data' => SettingsRepository::get( 'temporary_login', false ),
+			'previous_data' => SettingsRepository::get( 'temporary_login', true ),
 			'type'          => 'switch',
 			'tab'           => 'delegate-access',
 		];

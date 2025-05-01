@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author  Pluginly
+ * @since   1.9
+ * @version 1.9
+ */
 
 namespace LoginMeNow\Logins\UserSwitchingLogin;
 
@@ -14,7 +19,7 @@ class Settings {
 
 	public function register_fields( array $fields ) {
 		$fields[] = [
-			'title'         => 'User Switching',
+			'title'         => 'Enable User Switching',
 			'description'   => 'Easily switch between user accounts. Instant & in one-click!.',
 			'id'            => 'user_switching',
 			'previous_data' => SettingsRepository::get( 'user_switching', true ),
