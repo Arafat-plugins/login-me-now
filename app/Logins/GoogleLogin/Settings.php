@@ -13,8 +13,6 @@ use LoginMeNow\Utils\Helper;
 class Settings {
 	public function __construct() {
 		add_filter( 'login_me_now_settings_fields', [$this, 'register_fields'] );
-		add_filter( 'login_me_now_admin_settings_datatypes', [$this, 'register_types_legacy'] );
-		add_filter( 'login_me_now_dashboard_rest_options', [$this, 'register_options_legacy'] );
 	}
 
 	public function register_fields( array $fields ) {
@@ -169,30 +167,5 @@ class Settings {
 		];
 
 		return $fields;
-	}
-
-	public function register_types_legacy( array $options ) {
-		$options['google_login']                   = 'bool';
-		$options['google_client_id']               = 'string';
-		$options['google_client_secret']           = 'string';
-		$options['google_native_login']            = 'bool';
-		$options['google_onetap']                  = 'bool';
-		$options['google_cancel_on_tap_outside']   = 'bool';
-		$options['google_onetap_display_location'] = 'string';
-
-		return $options;
-	}
-
-	public function register_options_legacy( array $options ) {
-		$options['google_login']                     = false;
-		$options['google_client_id']                 = '';
-		$options['google_client_secret']             = '';
-		$options['google_native_login']              = true;
-		$options['google_update_existing_user_data'] = false;
-		$options['google_pro_user_avatar']           = false;
-		$options['google_cancel_on_tap_outside']     = false;
-		$options['google_onetap_display_location']   = 'side_wide';
-
-		return $options;
 	}
 }
