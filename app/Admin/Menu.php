@@ -9,6 +9,7 @@ namespace LoginMeNow\Admin;
 
 use LoginMeNow\Common\Hookable;
 use LoginMeNow\Common\Singleton;
+use LoginMeNow\Repositories\SettingsRepository;
 
 /**
  * Administration Menu Class
@@ -95,41 +96,29 @@ class Menu {
 			__( 'Settings', 'login-me-now' ),
 			__( 'Settings', 'login-me-now' ),
 			LOGIN_ME_NOW_MENU_CAPABILITY,
-			LOGIN_ME_NOW_MENU_SLUG ,
-			[$this, 'render_admin_dashboard'],
-		);
-
-		add_submenu_page(
 			LOGIN_ME_NOW_MENU_SLUG,
-			__( 'Temporary Login', 'login-me-now' ),
-			__( 'Temporary Login', 'login-me-now' ),
-			LOGIN_ME_NOW_MENU_CAPABILITY,
-			LOGIN_ME_NOW_MENU_SLUG . '&path=temporary-login',
 			[$this, 'render_admin_dashboard'],
 		);
 
-		add_submenu_page(
-			LOGIN_ME_NOW_MENU_SLUG,
-			__( 'Browser Extension', 'login-me-now' ),
-			__( 'Browser Extension', 'login-me-now' ),
-			LOGIN_ME_NOW_MENU_CAPABILITY,
-			LOGIN_ME_NOW_MENU_SLUG . '&path=browser-extensions',
-			[$this, 'render_admin_dashboard'],
-		);
-
-		if ( ! defined( 'LOGIN_ME_NOW_PRO_VERSION' ) ) {
+		if ( SettingsRepository::get( 'temporary_login', true ) ) {
 			add_submenu_page(
 				LOGIN_ME_NOW_MENU_SLUG,
-				__( 'Upgrade', 'login-me-now' ),
-				__( 'Upgrade', 'login-me-now' ),
+				__( 'Temporary Login', 'login-me-now' ),
+				__( 'Temporary Login', 'login-me-now' ),
 				LOGIN_ME_NOW_MENU_CAPABILITY,
-				LOGIN_ME_NOW_MENU_SLUG . '-upgrade-to-pro',
-				[$this, 'render_admin_dashboard']
+				LOGIN_ME_NOW_MENU_SLUG . '&path=temporary-login',
+				[$this, 'render_admin_dashboard'],
 			);
-
-			// Rewrite the menu item.
-			global $submenu;
-			$submenu[LOGIN_ME_NOW_MENU_SLUG][3][2] = 'https://loginmenow.com/pricing/';
+		}
+		if ( SettingsRepository::get( 'browser_extension', true ) ) {
+			add_submenu_page(
+				LOGIN_ME_NOW_MENU_SLUG,
+				__( 'Browser Extension', 'login-me-now' ),
+				__( 'Browser Extension', 'login-me-now' ),
+				LOGIN_ME_NOW_MENU_CAPABILITY,
+				LOGIN_ME_NOW_MENU_SLUG . '&path=browser-extensions',
+				[$this, 'render_admin_dashboard'],
+			);
 		}
 	}
 

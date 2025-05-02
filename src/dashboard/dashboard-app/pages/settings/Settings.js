@@ -53,6 +53,7 @@ export default function Settings() {
     { key: 'woocommerce', label: __('WooCommerce', 'login-me-now'), section: 'integrations' },
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations'  },
     { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
+    { key: 'surcease', label: __('SureCart', 'login-me-now'), section: 'integrations', is_upcoming: true },
     
     { key: 'activity-logs', label: __('Activity Logs', 'login-me-now'), section: 'more' },
     { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'more' },
