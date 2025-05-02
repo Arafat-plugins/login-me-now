@@ -51,8 +51,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enter <a href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">Google Client ID</a>', 'login-me-now' ),
-			'description'   => __( "Enter your google Client ID here.", 'login-me-now' ),
+			'title'         => __( 'Client ID', 'login-me-now' ),
+			'description'   => __( 'Enter your google Client ID here, <a target="__blank" href="https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid">get Client ID</a>', 'login-me-now' ),
 			'id'            => 'google_client_id',
 			'placeholder'   => 'ex: **********--**********.apps.googleusercontent.com',
 			'previous_data' => SettingsRepository::get( 'google_client_id', '' ),
@@ -68,15 +68,14 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enter Google Client Secret', 'login-me-now' ),
+			'title'         => __( 'Client Secret', 'login-me-now' ),
 			'description'   => __( "Enter your Client Secret key here.", 'login-me-now' ),
 			'id'            => 'google_client_secret',
-			'placeholder'   => 'e.g., Email Magic Link',
+			'placeholder'   => 'e.g., ******-****-******',
 			'previous_data' => SettingsRepository::get( 'google_client_secret', '' ),
 			'type'          => 'text',
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
-			'class'         => 'lmn-settings-separator',
 		];
 
 		$fields[] = [
@@ -86,8 +85,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enable One Tap', 'login-me-now' ),
-			'description'   => __( "Enable google one tap login", 'login-me-now' ),
+			'title'         => __( 'OneTap', 'login-me-now' ),
+			'description'   => __( "Enable google onetap login", 'login-me-now' ),
 			'id'            => 'google_onetap',
 			'previous_data' => SettingsRepository::get( 'google_onetap', true ),
 			'type'          => 'switch',
@@ -102,8 +101,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Select location', 'login-me-now' ),
-			'description'   => __( "Choose a location.", 'login-me-now' ),
+			'title'         => __( 'Select Location', 'login-me-now' ),
+			'description'   => __( "Choose a location where you want to show the onetap", 'login-me-now' ),
 			'id'            => 'google_onetap_display_location',
 			'previous_data' => SettingsRepository::get( 'google_onetap_display_location', 'side_wide' ),
 			'type'          => 'select',
@@ -126,8 +125,8 @@ class Settings {
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
 		$fields[] = [
-			'title'         => __( 'Select pages', 'login-me-now' ),
-			'description'   => __( "Select specific pages.", 'login-me-now' ),
+			'title'         => __( 'Select Page', 'login-me-now' ),
+			'description'   => __( "Select specific pages where you want to show the onetap", 'login-me-now' ),
 			'id'            => 'google_pro_selected_pages',
 			'previous_data' => SettingsRepository::get( 'google_pro_selected_pages', [] ),
 			'type'          => 'multi-select',
@@ -137,15 +136,15 @@ class Settings {
 			'if_selected'   => [
 				'google_onetap_display_location' => 'selected_pages',
 			],
-			'class'         => 'lmn-settings-separator',
 			'is_pro'        => true,
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enable One Tap Prompt Behavior', 'login-me-now' ),
+			'title'         => __( 'One Tap Prompt Behavior', 'login-me-now' ),
 			'description'   => __( 'Enable automatic closing on outside clicks.', 'login-me-now' ),
 			'id'            => 'google_cancel_on_tap_outside',
 			'previous_data' => SettingsRepository::get( 'google_cancel_on_tap_outside', false ),
+			'tab'           => 'google',
 			'type'          => 'switch',
 			'if_has'        => ['google_login', 'google_onetap'],
 		];
@@ -174,7 +173,7 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Update existing user name', 'login-me-now' ),
+			'title'         => __( 'Update Existing User Name', 'login-me-now' ),
 			'description'   => __( "Automatically retrieve the existing user first, last, nick & display name from google account upon login using gmail ", 'login-me-now' ),
 			'id'            => 'google_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'google_update_existing_user_data', false ),
@@ -208,6 +207,7 @@ class Settings {
 		$fields[] = [
 			'title'         => __( 'Redirection URL', 'login-me-now' ),
 			'description'   => "Redirect after successful login and registration",
+			'placeholder'   => 'e.g., https://yourwebsite.com/dashboard',
 			'id'            => 'google_pro_redirect_url',
 			'previous_data' => SettingsRepository::get( 'google_pro_redirect_url', '' ),
 			'type'          => 'text',

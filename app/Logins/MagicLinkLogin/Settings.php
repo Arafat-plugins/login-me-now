@@ -63,10 +63,10 @@ class Settings {
 
 		$fields[] = [
 			'title'         => 'Button Text',
-			'id'            => 'magic_link_login_button_text',
 			'description'   => 'Enter continue with magic link button text',
-			'placeholder'   => 'Continue with magic link',
-			'previous_data' => SettingsRepository::get( 'magic_link_login_button_text', 'Continue with magic link' ),
+			'id'            => 'magic_link_login_button_text',
+			'placeholder'   => 'ex. Continue with Magic Link',
+			'previous_data' => SettingsRepository::get( 'magic_link_login_button_text', 'Continue with Magic Link' ),
 			'type'          => 'text',
 			'tab'           => 'email-magic-link',
 			'if_has'        => ['email_magic_link_enable'],

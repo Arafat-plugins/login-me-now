@@ -40,7 +40,9 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Enter <a href="https://developers.facebook.com/apps/">facebook App ID</a>', 'login-me-now' ),
+			'title'         => __( 'App ID', 'login-me-now' ),
+			'description'   => __( 'Enter your Facebook App ID, get <a target="__blank" href="https://developers.facebook.com/apps/">Facebook App ID</a>', 'login-me-now' ),
+			'placeholder'   => '14343****34343',
 			'id'            => 'facebook_app_id',
 			'previous_data' => SettingsRepository::get( 'facebook_app_id', '' ),
 			'type'          => 'text',
@@ -53,7 +55,9 @@ class Settings {
 			'if_has' => ['facebook_login'],
 		];
 		$fields[] = [
-			'title'         => __( 'Enter Facebook App Secret', 'login-me-now' ),
+			'title'         => __( 'App Secret', 'login-me-now' ),
+			'description'   => __( 'Enter your Facebook App Secret, get <a target="__blank" href="https://developers.facebook.com/apps/">Facebook App Secret</a>', 'login-me-now' ),
+			'placeholder'   => '2ae0c**********e06',
 			'id'            => 'facebook_app_secret',
 			'previous_data' => SettingsRepository::get( 'facebook_app_secret', '' ),
 			'type'          => 'text',
@@ -66,7 +70,7 @@ class Settings {
 			'if_has' => ['facebook_login'],
 		];
 		$fields[] = [
-			'title'         => __( 'User role permission level', 'login-me-now' ),
+			'title'         => __( 'User Role Permission Level', 'login-me-now' ),
 			'description'   => __( 'Select the role that will be assigned to new users who sign up', 'login-me-now' ),
 			'id'            => 'facebook_pro_default_user_role',
 			'previous_data' => SettingsRepository::get( 'facebook_pro_default_user_role', '' ),
@@ -83,7 +87,7 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => __( 'Update existing user name', 'login-me-now' ),
+			'title'         => __( 'Update Existing User Name', 'login-me-now' ),
 			'description'   => __( 'Automatically retrieve the existing user first, last, nick & display name from facebook account upon login using facebook', 'login-me-now' ),
 			'id'            => 'facebook_update_existing_user_data',
 			'previous_data' => SettingsRepository::get( 'facebook_update_existing_user_data', false ),
@@ -102,6 +106,7 @@ class Settings {
 		$fields[] = [
 			'title'         => __( 'Redirection URL', 'login-me-now' ),
 			'description'   => "Redirect after successful login and registration",
+			'placeholder'   => 'e.g., https://yourwebsite.com/dashboard',
 			'id'            => 'facebook_pro_redirect_url',
 			'previous_data' => SettingsRepository::get( 'facebook_pro_redirect_url', '' ),
 			'type'          => 'text',
