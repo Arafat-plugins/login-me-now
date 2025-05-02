@@ -1,8 +1,8 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.6.0
- * @version 1.7.0
+ * @since   1.6
+ * @version 1.9
  */
 
 namespace LoginMeNow\Providers;
@@ -25,6 +25,7 @@ class IntegrationsServiceProvider extends ProviderBase {
 		return [
 			\LoginMeNow\Integrations\Directorist\Directorist::class,
 			\LoginMeNow\Integrations\EasyDigitalDownloads\EasyDigitalDownloads::class,
+			\LoginMeNow\Integrations\FluentSupport\FluentSupport::class,
 			\LoginMeNow\Integrations\WooCommerce\WooCommerce::class,
 			\LoginMeNow\Integrations\SimpleHistory\SimpleHistory::class,
 		];
