@@ -7,18 +7,18 @@
 
 namespace LoginMeNow\Logins\FacebookLogin;
 
-use LoginMeNow\Common\LoginButtonBase;
+use LoginMeNow\Common\LoginProviderButtonBase;
 use LoginMeNow\Repositories\SettingsRepository;
 use LoginMeNow\Utils\User;
 
-class Button extends LoginButtonBase {
+class Button extends LoginProviderButtonBase {
 
 	public function shortcodes(): void {
-		add_shortcode( 'login_me_now_facebook_button', [$this, 'button'] );
+		add_shortcode( 'login_me_now_facebook_button', [$this, 'get_button'] );
 	}
 
-	public function button(): string {
-		if ( ! FacebookLogin::show() ) {
+	public function get_button():string {
+		if ( ! $this->is_enabled() ) {
 			return '';
 		}
 
@@ -32,9 +32,7 @@ class Button extends LoginButtonBase {
 		return $this->html();
 	}
 
-	public function html( int $width = 270 ): string {
-		$width = apply_filters( 'login_me_now_facebook_button_width', $width );
-
+	public function html(): string {
 		ob_start();
 		include __DIR__ . '/Views/Button.php';
 		$html = ob_get_clean();
@@ -42,7 +40,15 @@ class Button extends LoginButtonBase {
 		return $html;
 	}
 
-	public function native_login(): bool {
-		return SettingsRepository::get( 'facebook_native_login', true );
+	public static function is_enabled(): bool {
+		$enable     = SettingsRepository::get( 'facebook_login', false );
+		$app_id     = SettingsRepository::get( 'facebook_app_id', '' );
+		$app_secret = SettingsRepository::get( 'facebook_app_secret', '' );
+
+		if ( $enable && $app_id && $app_secret ) {
+			return true;
+		}
+
+		return false;
 	}
 }

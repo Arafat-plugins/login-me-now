@@ -1,0 +1,69 @@
+<?php
+/**
+ * @author 	Pluginly
+ * @since	1.9
+ * @version 1.9
+ */
+
+namespace LoginMeNow\Integrations\EasyDigitalDownloads;
+
+use LoginMeNow\Common\Singleton;
+use LoginMeNow\Repositories\SettingsRepository;
+
+class Settings {
+	use Singleton;
+
+	public function __construct() {
+		add_filter( 'login_me_now_settings_fields', [$this, 'register_fields'] );
+	}
+
+	public function register_fields( array $fields ) {
+		$fields[] = [
+			'title'         => 'Enable Easy Digital Downloads Integration',
+			'description'   => 'Use login features for Easy Digital Downloads users.',
+			'id'            => 'easy_digital_downloads_integration_enable',
+			'previous_data' => SettingsRepository::get( 'easy_digital_downloads_integration_enable', true ),
+			'type'          => 'switch',
+			'tab'           => 'easy-digital-downloads',
+		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'easy-digital-downloads',
+			'if_has' => ['easy_digital_downloads_integration_enable'],
+		];
+
+		$fields[] = [
+			'title'         => __( 'Select Login Providers', 'login-me-now' ),
+			'description'   => __( "Choose what login methods you would like to show.", 'login-me-now' ),
+			'id'            => 'easy_digital_downloads_integration_login_providers',
+			'previous_data' => SettingsRepository::get( 'easy_digital_downloads_integration_login_providers', 'email_magic_link' ),
+			'type'          => 'multi-select',
+			'options'       => [
+				[
+					'value' => 'google',
+					'label' => 'Google',
+				],
+				[
+					'value' => 'facebook',
+					'label' => 'Facebook',
+				],
+				[
+					'value'  => 'email_magic_link',
+					'label'  => 'Email Magic Link',
+					'is_pro' => true,
+				],
+			],
+			'tab'           => 'easy-digital-downloads',
+			'if_has'        => ['easy_digital_downloads_integration_enable'],
+		];
+
+		$fields[] = [
+			'type'   => 'separator',
+			'tab'    => 'easy-digital-downloads',
+			'if_has' => ['easy_digital_downloads_integration_enable'],
+		];
+
+		return $fields;
+	}
+}

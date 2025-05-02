@@ -26,6 +26,8 @@ class LinkLogin extends LoginBase {
 	private $error;
 
 	public function setup(): void {
+		Settings::init();
+
 		if ( ! Module::is_active( 'temporary_login', true ) ) {
 			return;
 		}

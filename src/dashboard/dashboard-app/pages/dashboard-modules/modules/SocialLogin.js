@@ -92,55 +92,7 @@ function SocialLogin({ colorChange, proItem }) {
             login / register with social login options.
           </p>
         </div>
-        <div
-          className={`bg-[#F0F2F4] py-3 rounded-b-[8px] flex justify-between items-center px-4 border-t-[1px] border-t-[#cacaca] border-b-[#cacaca] ${
-            hover && "invisible"
-          }`}
-        >
-          <Link to={RedirectUrl("social-login")}>
-          <button
-            type="button"
-            className={`bg-[#F8FAFC] border border-[#cacaca]  text-[#6B6D71] px-2 py-1 text-[14px] rounded-[8px] hover:border-[#0DA071]  hover:text-[#0DA071] ${
-              !enableDmSocialLogin && "invisible"
-            }`}
-          >
-            Settings
-          </button>
-          </Link>
-          <Switch
-            onChange={handleDmSocialLogin}
-            className={classNames(
-              enableDmSocialLogin ? "bg-lmn" : "bg-slate-200",
-              "group relative inline-flex h-[8px] w-[32px] flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-lmn focus:ring-offset-2"
-            )}
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute h-full w-full rounded-md bg-white"
-            />
-            <span
-              aria-hidden="true"
-              className={classNames(
-                enableDmSocialLogin ? "bg-lmn" : "bg-gray-200",
-                "pointer-events-none absolute mx-auto h-[16px] w-[32px] rounded-full transition-colors duration-200 ease-in-out"
-              )}
-            />
-            <span
-              aria-hidden="true"
-              className={classNames(
-                enableDmSocialLogin ? "translate-x-5" : "translate-x-0",
-                "toggle-bubble pointer-events-none absolute left-0 inline-block h-[16px] w-[16px] transform rounded-full border border-gray-200 bg-white shadow ring-0 transition-transform duration-200 ease-in-out"
-              )}
-            />
-          </Switch>
-        </div>
-        <button
-          className={`bg-white px-6 py-3 text-[18px] font-semibold text-[#0DA071] rounded-[8px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
-            !hover && "invisible"
-          }`}
-        >
-          Buy Pro
-        </button>
+       
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.0.0
- * @version 1.7.0
+ * @since   1.0
+ * @version 1.9
  */
 
 namespace LoginMeNow\Admin;
@@ -13,6 +13,7 @@ class Admin {
 		( new Enqueuer() );
 		( new Menu() );
 		( new Route() );
+		( new Settings() );
 
 		add_filter( 'admin_footer_text', [$this, 'admin_footer_link'], 99 );
 

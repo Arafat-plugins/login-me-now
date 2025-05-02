@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'version'         => '1.8',
+	'version'         => '1.9',
 	'min_php'         => '7.4',
 	'db_version'      => '1.0.0',
 	'menu_slug'       => 'login-me-now',

@@ -1,24 +1,24 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.4.0
- * @version 1.6.2
+ * @since   1.9
+ * @version 1.9
  */
 
 namespace LoginMeNow\Logins\MagicLinkLogin;
 
-use LoginMeNow\Common\LoginButtonBase;
+use LoginMeNow\Common\LoginProviderButtonBase;
 use LoginMeNow\Repositories\SettingsRepository;
 use LoginMeNow\Utils\User;
 
-class Button extends LoginButtonBase {
+class Button extends LoginProviderButtonBase {
 
 	public function shortcodes(): void {
-		add_shortcode( 'login_me_now_email_magic_link_button', [$this, 'button'] );
+		add_shortcode( 'login_me_now_email_magic_link_button', [$this, 'get_button'] );
 	}
 
-	public function button(): string {
-		if ( ! MagicLinkLogin::show() ) {
+	public function get_button(): string {
+		if ( ! $this->is_enabled() ) {
 			return '';
 		}
 
@@ -32,9 +32,7 @@ class Button extends LoginButtonBase {
 		return $this->html();
 	}
 
-	public function html( int $width = 270 ): string {
-		$width = apply_filters( 'login_me_now_email_magic_link_button_width', $width );
-
+	public function html(): string {
 		ob_start();
 		include __DIR__ . '/Views/Button.php';
 		$html = ob_get_clean();
@@ -42,7 +40,7 @@ class Button extends LoginButtonBase {
 		return $html;
 	}
 
-	public function native_login(): bool {
-		return SettingsRepository::get( 'email_magic_link_native_login', true );
+	public function is_enabled(): bool {
+		return SettingsRepository::get( 'email_magic_link_enable', true );
 	}
 }

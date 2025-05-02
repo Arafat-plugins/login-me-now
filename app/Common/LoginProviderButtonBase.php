@@ -1,8 +1,8 @@
 <?php
 /**
  * @author  Pluginly
- * @since   1.6.0
- * @version 1.6.0
+ * @since   1.6
+ * @version 1.9
  */
 
 namespace LoginMeNow\Common;
@@ -10,14 +10,13 @@ namespace LoginMeNow\Common;
 use LoginMeNow\Common\Hookable;
 use LoginMeNow\Common\Singleton;
 
-abstract class LoginButtonBase {
+abstract class LoginProviderButtonBase {
 	use Singleton;
 	use Hookable;
 
-	abstract public function button(): string;
-	abstract public function html( int $width = 300 ): string;
+	abstract public function html(): string;
 	abstract public function shortcodes(): void;
-	abstract public function native_login(): bool;
+	abstract public function get_button(): string;
 
 	public function __construct() {
 		$this->action( 'init', [$this, 'shortcodes'] );

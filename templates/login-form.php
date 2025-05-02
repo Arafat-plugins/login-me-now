@@ -1,8 +1,8 @@
 <?php
 /**
- * @author  WPtownhall
- * @since   1.4.0
- * @version 1.4.0
+ * @author  Pluginly
+ * @since   1.4
+ * @version 1.9
  */
 
 if ( ! $buttons || 0 === count( $buttons ) ) {
@@ -15,20 +15,20 @@ wp_enqueue_script( 'login-me-now-social-login-main' );
 
 <div id="wp-login-login-me-now-buttons">
 
-	<?php if ( $before ): ?>
+	<?php if ( 'before' === $display_position ): ?>
 		<div style="text-align: center; margin: 10px 0;">
-			<?php esc_html_e( 'Or', 'login-me-now' );?>
+			<?php esc_html_e( 'Or', 'login-me-now' ); ?>
 		</div>
-	<?php endif;?>
+	<?php endif; ?>
 
 	<?php foreach ( $buttons as $button ): ?>
-		<?php echo $button->button(); ?>
-	<?php endforeach;?>
+		<?php echo $button->get_button(); ?>
+	<?php endforeach; ?>
 
-	<?php if ( $after ): ?>
+	<?php if ( 'after' === $display_position ): ?>
 		<div style="text-align: center; margin: 10px 0;">
-			<?php esc_html_e( 'Or', 'login-me-now' );?>
+			<?php esc_html_e( 'Or', 'login-me-now' ); ?>
 		</div>
-	<?php endif;?>
+	<?php endif; ?>
 
 </div>
