@@ -20,10 +20,11 @@ class EasyDigitalDownloads extends IntegrationBase {
 		}
 
 		add_action( 'edd_login_fields_after', [$this, 'easy_digital_downloads_integration'] );
+		add_action( 'edd_register_form_fields_after', [$this, 'easy_digital_downloads_integration'] );
 	}
 
 	public function easy_digital_downloads_integration() {
-		$position  = 'after';
+		$position  = 'before';
 		$providers = SettingsRepository::get( 'easy_digital_downloads_integration_login_providers', [] );
 
 		$repository = new LoginProvidersRepository();
@@ -31,6 +32,6 @@ class EasyDigitalDownloads extends IntegrationBase {
 	}
 
 	public function is_enabled(): bool {
-		return (bool) SettingsRepository::get( 'easy_digital_downloads_login_enable', true );
+		return (bool) SettingsRepository::get( 'easy_digital_downloads_integration_enable', true );
 	}
 }

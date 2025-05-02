@@ -54,8 +54,8 @@ export default function Settings() {
     { key: 'easy-digital-downloads', label: __('Easy Digital Downloads', 'login-me-now'), section: 'integrations' },
     { key: 'fluent-support', label: __('Fluent Support', 'login-me-now'), section: 'integrations', is_upcoming: true  },
     
-    { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'more' },
     { key: 'activity-logs', label: __('Activity Logs', 'login-me-now'), section: 'more' },
+    { key: 'delegate-access', label: __('Delegate Access', 'login-me-now'), section: 'more' },
     { key: 'custom-support', label: __('Customer Support', 'login-me-now'), section: 'more', is_upcoming: true },
     { key: 'security', label: __('Security', 'login-me-now'), section: 'more', is_upcoming: true },
     // { key: 'custom-request', label: __('Custom Request', 'login-me-now'), section: 'more', is_upcoming: true  },
