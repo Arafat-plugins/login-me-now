@@ -14,8 +14,8 @@ class Settings {
 
 	public function register_fields( array $fields ) {
 		$fields[] = [
-			'title'         => 'User Switching',
-			'description'   => 'Easily switch between user accounts. Instant & in one-click!.',
+			'title'         => __( 'User Switching', 'login-me-now' ),
+			'description'   => __( 'Easily switch between user accounts. Instant & in one-click!.', 'login-me-now' ),
 			'id'            => 'user_switching',
 			'previous_data' => SettingsRepository::get( 'user_switching', true ),
 			'type'          => 'switch',

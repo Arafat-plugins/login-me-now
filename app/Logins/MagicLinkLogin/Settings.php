@@ -16,7 +16,7 @@ class Settings {
 
 	public function register_fields( array $fields ) {
 		$fields[] = [
-			'title'         => 'Enable magic link login',
+			'title'         => __( 'Enable magic login', 'login-me-now' ),
 			'id'            => 'email_magic_link_enable',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_enable', false ),
 			'type'          => 'switch',
@@ -25,8 +25,8 @@ class Settings {
 
 
 		$fields[] = [
-			'title'         => 'Title',
-			'tooltip'       => 'Enter the form title',
+			'title'         => __( 'Title', 'login-me-now' ),
+			'tooltip'       => __( 'Enter the form title', 'login-me-now' ),
 			'id'            => 'email_magic_link_title',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_title', 'Email Magic Link' ),
@@ -36,8 +36,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => 'Description',
-			'tooltip'       => 'Enter the form description',
+			'title'         => __( 'Description', 'login-me-now' ),
+			'tooltip'       => __( 'Enter the form description', 'login-me-now' ),
 			'id'            => 'email_magic_link_description',
 			'placeholder'   => 'e.g., Email Magic Link',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_description', 'Enter your registered email address to receive a quick login link directly in your inbox.' ),
@@ -46,9 +46,9 @@ class Settings {
 			'if_has'        => ['email_magic_link_enable'],
 		];
 		$fields[] =[
-			'title'			=> 'Change button text',
+			'title'			=> __( 'Change button text', 'login-me-now' ),
 			'id'			=> 'magic_link_login_button_text',
-			'tooltip'		=> 'Enter magic button text',
+			'tooltip'		=> __('Enter magic button text', 'login-me-now' ),
 			'placeholder'	=> 'Continue with magic link',
 			'previous_data' => SettingsRepository::get('magic_link_login_button_text', 'Continue with magic link'),
 			'type' 			=> 'text',
@@ -57,8 +57,8 @@ class Settings {
 		];
 
 		$fields[] = [
-			'title'         => 'Expiration',
-			'tooltip'       => 'Enter the expiration of link in seconds',
+			'title'         => __( 'Expiration', 'login-me-now' ),
+			'tooltip'       => __( 'Enter the expiration of link in seconds', 'login-me-now' ),
 			'id'            => 'email_magic_link_expiration',
 			'placeholder'   => 'e.g., 300',
 			'previous_data' => SettingsRepository::get( 'email_magic_link_expiration', 300 ),
