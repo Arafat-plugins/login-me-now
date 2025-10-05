@@ -40,6 +40,13 @@ class Settings {
 		];
 
 		$fields[] = [
+			'description' => sprintf( __('Redirect URL %s', 'login-me-now' ),esc_url( site_url( '/wp-login.php?lmn-facebook' ) ) ),
+			'type'   => 'message',
+			'tab'    => 'facebook',
+			'if_has' => ['facebook_login'],
+		];
+
+		$fields[] = [
 			'title'         => __( 'App ID', 'login-me-now' ),
 			'description'   => __( 'Enter your Facebook App ID, get <a target="__blank" href="https://developers.facebook.com/apps/">Facebook App ID</a>', 'login-me-now' ),
 			'placeholder'   => '14343****34343',

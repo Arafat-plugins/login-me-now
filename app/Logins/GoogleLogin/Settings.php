@@ -35,13 +35,21 @@ class Settings {
 				'label' => $role,
 			];
 		}
-
+		
+		
 		$fields[] = [
 			'title'         => __( 'Enable Google Login', 'login-me-now' ),
 			'id'            => 'google_login',
 			'previous_data' => SettingsRepository::get( 'google_login', false ),
 			'type'          => 'switch',
 			'tab'           => 'google',
+		];
+		
+		$fields[] = [
+			'description'   => sprintf( __( 'Follow the <a class="text-[#2271B1] underline" target="_blank" href="https://youtu.be/qS4dY7syQwA?t=471">tutorial</a> Redirect URL %s', 'login-me-now' ),esc_url( site_url( '/wp-login.php?lmn-google' ) )),
+			'tab'    		=> 'google',
+			'type'          => 'message',
+			'if_has' 		=> ['google_login'],
 		];
 
 		$fields[] = [
@@ -77,6 +85,8 @@ class Settings {
 			'tab'           => 'google',
 			'if_has'        => ['google_login'],
 		];
+
+		
 
 		$fields[] = [
 			'type'   => 'separator',

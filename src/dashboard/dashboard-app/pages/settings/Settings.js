@@ -131,6 +131,19 @@ export default function Settings() {
             </Form.Item>
           </div>
         );
+        case 'message':
+          return (
+            <div className="single-field-item">
+              <h3
+                className="form-field-item-heading text-[15px] text-[#666666] tablet:w-full font-medium"
+                dangerouslySetInnerHTML={{ __html: field.title }}
+              />
+              <p
+                className="text-sm mb-2 text-gray-500"
+                dangerouslySetInnerHTML={{ __html: field.description }}
+              />
+            </div>
+          );
       case 'color':
         return (
           <div className='single-field-item'>
